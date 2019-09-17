@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Load_Dimension_tbls"
   DTS:PackageType="5"
-  DTS:VersionBuild="36"
-  DTS:VersionGUID="{D09BAB25-7FEC-431A-B430-8C02EF330697}">
+  DTS:VersionBuild="37"
+  DTS:VersionGUID="{D457980A-245B-4ED9-B198-EA90D0FAA76A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -567,21 +567,6 @@
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
-          DTS:refId="Package\Pre Job\Expression Task"
-          DTS:CreationName="Microsoft.ExpressionTask"
-          DTS:Description="Expression Task"
-          DTS:DTSID="{cb7ba4fb-9075-4dc2-b0b7-2f48eff625e9}"
-          DTS:ExecutableType="Microsoft.ExpressionTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Expression Task"
-          DTS:ThreadHint="0">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <ExpressionTask
-              Expression="@[User::vStart_Date]=GETDATE()" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
           DTS:refId="Package\Pre Job\Get Control Run ID"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
@@ -606,6 +591,21 @@
                 SQLTask:DataType="3"
                 SQLTask:ParameterSize="-1" />
             </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Pre Job\Getting Start Date"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{cb7ba4fb-9075-4dc2-b0b7-2f48eff625e9}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Getting Start Date"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::vStart_Date]=GETDATE()" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -643,7 +643,7 @@
           DTS:refId="Package\Pre Job.PrecedenceConstraints[Constraint]"
           DTS:CreationName=""
           DTS:DTSID="{2cc53a47-1518-48ff-8f4d-ebf849032244}"
-          DTS:From="Package\Pre Job\Expression Task"
+          DTS:From="Package\Pre Job\Getting Start Date"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint"
           DTS:To="Package\Pre Job\Insert Job Control" />
@@ -923,8 +923,8 @@
           Id="Package\Post Job"
           TopLeft="340.138884714495,1404.14998651872" />
         <NodeLayout
-          Size="154.666666666667,42.6666666666667"
-          Id="Package\Pre Job\Expression Task"
+          Size="165.333333333334,42.6666666666667"
+          Id="Package\Pre Job\Getting Start Date"
           TopLeft="42.666661053896,5.58888777567285" />
         <NodeLayout
           Size="169.333333333334,42.6666666666667"
@@ -936,30 +936,18 @@
           TopLeft="50.7777725209793,95.4444417840906" />
         <EdgeLayout
           Id="Package\Pre Job.PrecedenceConstraints[Constraint]"
-          TopLeft="119.999994387229,48.2555544423395">
+          TopLeft="129.055550120771,48.2555544423395">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="12.77777813375,47.188887341751"
+              EndConnector="0,47.1888873417511"
               Start="0,0"
-              End="12.77777813375,39.688887341751">
+              End="0,39.6888873417511">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,19.5944436708755" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,19.5944436708755"
-                    Point2="0,23.5944436708755"
-                    Point3="4,23.5944436708755" />
-                  <mssgle:LineSegment
-                    End="8.77777813375,23.5944436708755" />
-                  <mssgle:CubicBezierSegment
-                    Point1="8.77777813375,23.5944436708755"
-                    Point2="12.77777813375,23.5944436708755"
-                    Point3="12.77777813375,27.5944436708755" />
-                  <mssgle:LineSegment
-                    End="12.77777813375,39.688887341751" />
+                    End="0,39.6888873417511" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

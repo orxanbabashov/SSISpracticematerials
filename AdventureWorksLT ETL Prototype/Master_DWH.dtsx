@@ -11,10 +11,22 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Master_DWH"
   DTS:PackageType="5"
-  DTS:VersionBuild="3"
-  DTS:VersionGUID="{C096DEE3-F0B1-4221-AE83-7D3879273586}">
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{E3576A02-A90D-4D77-8EC1-1F50881E6E73}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SQL Connection]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{8EF6C6E4-4250-4BF6-8130-1F03D0FFEB6D}"
+      DTS:ObjectName="SQL Connection">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=LVAGPLTP3455;Initial Catalog=SSISDB;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
@@ -174,17 +186,17 @@
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{AC594831-28F6-48F7-A72E-FF4FE5E19200}"
-              SQLTask:SqlStatementSource="SELECT MAX(Control_run_id)Control_run_id&#xA;from [SSISDB].dbo.[Job_Control]&#xA; Where Job_Run_id = ?"
+              SQLTask:Connection="{8EF6C6E4-4250-4BF6-8130-1F03D0FFEB6D}"
+              SQLTask:SqlStatementSource="SELECT MAX (Job_run_id) &#xA;from SSISDB.dbo.Job_Run  Where Job_Name = ?"
               SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ResultBinding
                 SQLTask:ResultName="0"
-                SQLTask:DtsVariableName="User::v_Job_Control_Id" />
+                SQLTask:DtsVariableName="User::vJob_Run_Id" />
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
-                SQLTask:DtsVariableName="$Package::vJob_Run_Id"
+                SQLTask:DtsVariableName="System::PackageName"
                 SQLTask:ParameterDirection="Input"
-                SQLTask:DataType="3"
+                SQLTask:DataType="130"
                 SQLTask:ParameterSize="-1" />
             </SQLTask:SqlTaskData>
           </DTS:ObjectData>
@@ -216,19 +228,19 @@
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{AC594831-28F6-48F7-A72E-FF4FE5E19200}"
-              SQLTask:SqlStatementSource="Insert into dbo.Job_Control&#xA;(Job_Run_id, Control_Name)&#xA;Values (?,?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:Connection="{8EF6C6E4-4250-4BF6-8130-1F03D0FFEB6D}"
+              SQLTask:SqlStatementSource="Insert into  dbo.Job_Run (Job_Name, Job_Start_Date,Job_Message)  Select ?,?,'Job Still Running'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
-                SQLTask:DtsVariableName="$Package::vJob_Run_Id"
-                SQLTask:ParameterDirection="Input"
-                SQLTask:DataType="3"
-                SQLTask:ParameterSize="-1" />
-              <SQLTask:ParameterBinding
-                SQLTask:ParameterName="1"
                 SQLTask:DtsVariableName="System::PackageName"
                 SQLTask:ParameterDirection="Input"
                 SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::vStart_Date"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
                 SQLTask:ParameterSize="-1" />
             </SQLTask:SqlTaskData>
           </DTS:ObjectData>
