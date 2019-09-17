@@ -1,0 +1,1188 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/16/2016 2:20:48 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP01"
+  DTS:CreatorName="DESKTOP01\randal"
+  DTS:DTSID="{D0EE9181-5D8D-4FBE-8021-D7392CAA9938}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Load_Dimension_tbls"
+  DTS:PackageType="5"
+  DTS:VersionBuild="30"
+  DTS:VersionGUID="{FE6739A4-1AA1-40A4-9EC2-44274DC856B3}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Destination_Ole]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{8908BE57-27F6-4462-B0A8-DBE0449C2D34}"
+      DTS:ObjectName="Destination_Ole">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=LVAGPLTP3455;Initial Catalog=DWAdventureWorksLT2012Lab02;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Source_Ole]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{3AD45174-9070-4196-9E9A-12D7522FB058}"
+      DTS:ObjectName="Source_Ole">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=LVAGPLTP3455;Initial Catalog=AdventureWorksLT2012;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SQL Connection]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{CF94D6C2-0FB0-4BFD-B920-4E2B76F43707}"
+      DTS:ObjectName="SQL Connection">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=LVAGPLTP3455;Initial Catalog=SSISDB;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:DTSID="{BB28D593-33F2-430F-9B2A-6429DF40CC5B}"
+      DTS:ObjectName="vJob_Run_Id">
+      <DTS:Property
+        DTS:DataType="3"
+        DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{82EB7E30-3631-45AF-8D76-B72CA3586DA7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="vControlled">
+      <DTS:VariableValue
+        DTS:DataType="8">N</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{70C9FF8A-D54A-40DE-823E-980575A95154}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="REPLACE(LEFT( (DT_WSTR, 200) GETDATE(),10),&quot;-&quot;,&quot;&quot;)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="vDateString">
+      <DTS:VariableValue
+        DTS:DataType="8">20190917</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BDCEEEE5-4721-4BA4-A062-7227CA98EB01}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vDeleteCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{81173278-EAD3-4E11-9B1E-753C1C677D09}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vEnd_Date">
+      <DTS:VariableValue
+        DTS:DataType="7">9/16/2019 4:55:22 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E61B5482-6198-4222-B1B2-240F09D76F4B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="vError_Description">
+      <DTS:VariableValue
+        DTS:DataType="8">NA</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{881644F9-B577-4D5F-B267-2CAE298DA455}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vInsertCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{91DEAE7D-4180-48A2-9814-FF5797AE3B88}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="vMessage">
+      <DTS:VariableValue
+        DTS:DataType="8">Success</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D4838F86-06E4-43B8-912F-227F3EC21A2B}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vSourceCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A7D8A0C2-BF3F-4D37-8246-0AD35C728F3A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="vSource_System">
+      <DTS:VariableValue
+        DTS:DataType="8">DWH</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3A9195DE-F990-413F-8D08-F422BC5F9F8C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vStart_Date">
+      <DTS:VariableValue
+        DTS:DataType="7">9/16/2019 4:56:13 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0C67DD2E-9E4A-4E13-B4FA-96023A295CDC}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vTargetCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F9989B40-EEF2-436F-8B66-3A08587ABF7B}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vUnchangedCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8B5B35CA-232E-48D2-9FA0-5282284759D0}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vUpdateCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{68345224-B0EF-47A1-AAE9-FCC612C67B66}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vUpsertCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AFC19B8E-3285-4D0F-9900-25C6233F24FA}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Job_Control_Id">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Control MisMatch"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{201a8233-caa9-4109-bcda-bb49be10f6e9}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Control MisMatch"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::vMessage] = &quot;Control Miss Match&quot;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Controlled  SW"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{6be508f9-5063-4bc3-be6d-402782f0675e}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Controlled  SW"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::vControlled] = &quot;Y&quot;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Main Job"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{5a832db1-d75e-4379-9144-1be4581ff3af}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Main Job">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Main Job\Drop Foreign Keys Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{33FAE0D3-2197-401B-B821-9647E6ED10D3}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Drop Foreign Keys Execute SQL Task"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Main Job\Load DImCustomers Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{b9e4b2af-88a3-4e93-8b22-25a03ce0cbde}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load DImCustomers Execute SQL Task"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{8908BE57-27F6-4462-B0A8-DBE0449C2D34}"
+              SQLTask:SqlStatementSource="pETLDimCustomers" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Main Job\Load DImProducts Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{bcbeb674-2bf0-463d-befe-0745f471ced8}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load DImProducts Execute SQL Task"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{8908BE57-27F6-4462-B0A8-DBE0449C2D34}"
+              SQLTask:SqlStatementSource="pETLDimProducts" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Main Job\Reset the DW Database Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{DDB85DFE-ABA3-48AA-B8F6-66B78C615B0E}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Reset the DW Database Execute SQL Task"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{8908BE57-27F6-4462-B0A8-DBE0449C2D34}"
+              SQLTask:SqlStatementSource="--****************** [DWAdventureWorksLT2012v1] *********************--&#xA;-- This file will drop and create the DWAdventureWorksLT2012v1&#xA;-- database, with all its objects. &#xA;--********************************************************************--&#xA;&#xA;USE [master];&#xA;If Exists (Select Name from SysDatabases Where Name = 'DWAdventureWorksLT2012v1')&#xA;  Begin&#xA;   Alter database DWAdventureWorksLT2012v1 set single_user with rollback immediate;&#xA;   Drop database DWAdventureWorksLT2012v1;&#xA;  End&#xA;go&#xA;CREATE DATABASE DWAdventureWorksLT2012v1;&#xA;go&#xA;USE DWAdventureWorksLT2012v1;&#xA;go&#xA;&#xA;--********************************************************************--&#xA;-- Create the Tables&#xA;--********************************************************************--&#xA;--  Create a Null Lookup table:&#xA;CREATE -- Lookup Null Statuses&#xA;TABLE ETLNullStatuses&#x9;&#xA;( NullStatusID int Not Null  &#xA;, NullStatusDateKey date -- date = YYYY-MM-DD between 0001-01-01 through 9999-12-31&#xA;, NullStatusName nvarchar (50)&#xA;, NullStatusDescription nvarchar (1000)&#xA;CONSTRAINT [pkETLNullStatuses]  PRIMARY KEY Clustered (NullStatusID desc)&#xA;);&#xA;go&#xA;&#xA;--  Fill Null Lookup Table&#xA;INSERT -- Lookup data&#xA;INTO [DWAdventureWorksLT2012v1].[dbo].[ETLNullStatuses]&#xA;( NullStatusID&#xA;, NullStatusDateKey&#xA;, NullStatusName&#xA;, NullStatusDescription&#xA;) &#xA;VALUES&#xA;&#x9;  (-1,'9999-12-31','Unavaliable', 'Value is currently unknown, but should be available later')&#xA;&#x9;, (-2,'0001-01-01','Not Applicable', 'A value is not applicable to this item')&#xA;&#x9;, (-3,'0001-01-02','Unknown', 'Value is currently unknown, but may be available later')&#xA;&#x9;, (-4,'0001-01-03','Corrupt', 'Original value appeared corrupt or suspicious. As such it was removed from the reporting data')&#xA;&#x9;, (-5,'0001-01-04','Not Defined', 'A value could be entered, but the source data has not yet defined it')&#xA;;&#xA;go&#xA;&#xA;-- Create Date Dimension Lookup Table:&#xA;CREATE -- Dates Dimension  &#xA;TABLE DimDates&#x9;&#xA;( CalendarDateKey int Not Null CONSTRAINT [pkDimDates] PRIMARY KEY&#xA;, CalendarDateName nvarchar(50) Not Null &#xA;, CalendarYearMonthID int Not Null &#xA;, CalendarYearMonthName nvarchar(50) Not Null &#xA;, CalendarYearQuarterID int Not Null &#xA;, CalendarYearQuarterName nvarchar(50) Not Null &#xA;, CalendarYearID int Not Null &#xA;, CalendarYearName nvarchar(50) Not Null&#xA;, CalendarDate Date Not Null  &#xA;, FiscalDate Date Not Null &#xA;);&#xA;go&#xA;&#xA;-- Fill DimDates Lookup Table&#xA;-- Step a: Declare variables use in processing&#xA;SET NOCOUNT ON;&#xA;Declare @StartDate date; &#xA;Declare @EndDate date;&#xA;&#xA;-- Step b:  Fill the variable with values for the range of years needed&#xA;Select @StartDate = '01-01-' + Cast(Year(Min([OrderDate])) as nvarchar(50))&#xA;&#x9;From [AdventureWorksLT2012].[SalesLT].[SalesOrderHeader]; &#xA;Select @EndDate = '12-31-' + Cast(Year(Max([OrderDate]))  as nvarchar(50))&#xA;&#x9;From [AdventureWorksLT2012].[SalesLT].[SalesOrderHeader];&#xA;&#xA;-- Step c:  Use a while loop to add dates to the table&#xA;Declare @DateInProcess datetime = @StartDate;&#xA;&#xA;While @DateInProcess &lt;= @EndDate&#xA;&#x9;Begin&#xA;&#x9;--Add a row into the date dimension table for this date&#xA;&#x9;&#x9;Insert Into [DWAdventureWorksLT2012v1].[dbo].[DimDates] &#xA;&#x9;&#x9;( [CalendarDateKey]&#xA;&#x9;&#x9;, [CalendarDateName]&#xA;&#x9;&#x9;, [CalendarYearMonthID]&#xA;&#x9;&#x9;, [CalendarYearMonthName]&#xA;&#x9;&#x9;, [CalendarYearQuarterID]&#xA;&#x9;&#x9;, [CalendarYearQuarterName]&#xA;&#x9;&#x9;, [CalendarYearID]&#xA;&#x9;&#x9;, [CalendarYearName]&#xA;&#x9;&#x9;, [CalendarDate]&#xA;&#x9;&#x9;, [FiscalDate]&#xA;&#x9;&#x9;)&#xA;&#x9;&#x9;Values ( &#xA;&#x9;&#x9;  Convert(nvarchar(50), @DateInProcess, 112) -- [CalendarDateKey]&#xA;&#x9;&#x9;, DateName( weekday, @DateInProcess ) + ', ' + Convert(nvarchar(50), @DateInProcess, 110) --  [CalendarDateName]&#xA;&#x9;&#x9;, Left(Convert(nvarchar(50), @DateInProcess, 112), 6) -- [CalendarYearMonthKey]&#xA;&#x9;&#x9;, DateName( month, @DateInProcess ) -- [CalendarYearMonthName]&#xA;&#x9;&#x9;, Cast( Year(@DateInProcess) as nVarchar(50)) + '0' + DateName( quarter, @DateInProcess)   --[CalendarYearQuarterKey]&#xA;&#x9;&#x9;, 'Q' + DateName( quarter, @DateInProcess ) + ' - ' + Cast( Year(@DateInProcess) as nVarchar(50)) --[CalendarYearQuarterName]&#xA;&#x9;&#x9;, Year( @DateInProcess ) -- [CalendarYearKey] &#xA;&#x9;&#x9;, Cast( Year( @DateInProcess) as nVarchar(50) ) -- [CalendarYearName]&#xA;&#x9;&#x9;, Convert([Date], @DateInProcess) &#x9;-- [FiscalDateKey] &#x9;&#x9;&#x9;   &#xA;&#x9;&#x9;, Convert([Date], DateAdd(mm,-6,@DateInProcess)) &#x9;-- [FiscalDateKey] &#xA;&#x9;&#x9;);  &#xA;&#x9;&#x9;-- Add a day and loop again&#xA;&#x9;&#x9;Set @DateInProcess = DateAdd(d, 1, @DateInProcess);&#xA;&#x9;End&#xA;SET NOCOUNT ON;&#xA;go&#xA;&#xA;-- Create Other Dimension Tables:&#xA;CREATE &#xA;TABLE [dbo].[DimProducts]&#xA;( ProductKey int NOT NULL Primary Key IDENTITY(1, 1)&#xA;, [ProductID] [int]  NOT NULL&#xA;, [ProductName]  nvarchar(50) NOT NULL&#xA;, [ProductColor] nvarchar(50) NOT NULL&#xA;, [ProductSize] nvarchar(50) NOT NULL&#xA;, [ProductSellingStartDate] date NOT NULL&#xA;, [ProductSellingEndDate] date NOT NULL &#xA;, [ProductSellingEndDateText] nvarchar(50) NOT NULL&#xA;, [ProductCategoryID] int Not Null&#xA;, [ProductCategoryName] nvarchar(50) Not Null&#xA;, [ParentProductCategoryName] nvarchar(50) Not Null&#xA;)&#xA;;&#xA;&#xA;If (object_id('DimCustomers') is not null) Drop Table DimCustomers;&#xA;go&#xA;&#xA;CREATE&#xA;TABLE DimCustomers&#xA;( CustomerKey int NOT NULL Primary Key IDENTITY(1, 1)&#xA;, [CustomerID] int Not Null &#xA;, [ContactFullName] nvarchar(200) Not Null&#xA;, [CompanyName] nvarchar(200) Not Null&#xA;, [SalesPersonAlias] nvarchar(200) Not Null&#xA;);&#xA;go&#xA;&#xA;-- Create Fact Tables:&#xA;If (object_id('FactSales') is not null) Drop Table FactSales;&#xA;go&#xA;CREATE TABLE [dbo].[FactSales]&#xA;( [SalesOrderID] [int] NOT NULL&#xA;, [SalesOrderDetailID] [int] NOT NULL&#xA;, [OrderDateKey] [int] NOT NULL&#xA;, [ShipDateKey] [int] NOT NULL&#xA;, [CustomerKey] [int] NOT NULL&#xA;, [ProductKey] [int] NOT NULL&#xA;, [OrderQty] [smallint] NOT NULL&#xA;, [UnitPrice] [money] NOT NULL&#xA;, [UnitPriceDiscount] [money] NOT NULL&#xA;&#x9;CONSTRAINT [pk FactSales] PRIMARY KEY&#xA;&#x9;( [SalesOrderID]&#xA;&#x9;, [SalesOrderDetailID]&#xA;&#x9;, [OrderDateKey]&#xA;&#x9;, [ShipDateKey] &#xA;&#x9;, [CustomerKey]&#xA;&#x9;, [ProductKey]&#xA;&#x9;) &#xA;);&#xA;go&#xA;&#xA;--********************************************************************--&#xA;-- Create the Foreign Key CONSTRAINTs&#xA;--********************************************************************--&#xA;ALTER TABLE dbo.FactSales ADD CONSTRAINT&#xA;&#x9;fkFactSalesToDimProducts FOREIGN KEY (ProductKey) &#xA;&#x9;REFERENCES dbo.DimProducts&#x9;(ProductKey);&#xA;go&#xA;&#xA;ALTER TABLE dbo.FactSales ADD CONSTRAINT &#xA;&#x9;fkFactSalesToDimCustomers FOREIGN KEY (CustomerKey) &#xA;&#x9;REFERENCES dbo.DimCustomers (CustomerKey);&#xA;go&#xA;&#xA;ALTER TABLE dbo.FactSales ADD CONSTRAINT&#xA;&#x9;fkFactSalesOrderDateToDimDates FOREIGN KEY (OrderDateKey) &#xA;&#x9;REFERENCES dbo.DimDates(CalendarDateKey);&#xA;go&#xA;&#xA;ALTER TABLE dbo.FactSales ADD CONSTRAINT&#xA;&#x9;fkFactSalesShipDateDimDates FOREIGN KEY (ShipDateKey)&#xA;&#x9;REFERENCES dbo.DimDates (CalendarDateKey);&#xA;go&#xA;&#xA;&#xA;--********************************************************************--&#xA;-- Create the ETL Views&#xA;--********************************************************************--&#xA;Create View vETLDimProducts&#xA;AS&#xA;&#x9;SELECT &#xA;&#x9;  [ProductID] = T3.[ProductID]&#xA;&#x9;, [ProductName] = Cast( T3.[Name] as nvarchar(50))&#xA;&#x9;, [ProductColor] = Cast( ( CASE  &#xA;&#x9;&#x9;When ( (T3.[Color] is Null) AND (T2.Name = 'Components') ) Then 'Per Bike'&#xA;&#x9;&#x9;When ( (T3.[Color] is Null) AND (T2.Name = 'Accessories') ) Then 'Per Material'&#xA;&#x9;&#x9;Else T3.[Color] &#xA;&#x9;&#x9;End) as nvarchar(50))&#xA;&#x9;, [ProductSize] = Cast( IIF(T3.[Size] is Null, 'One Size Only', T3.[Size])  as nvarchar(50))&#xA;&#x9;, [ProductSellingStartDate] = T3.SellStartDate&#xA;&#x9;, [ProductSellingEndDate] =  IsNull( T3.SellEndDate ,'9999-12-31')&#xA;&#x9;, [ProductSellingEndDateText] = IsNull(T4.NullStatusName, T3.SellEndDate) &#xA;&#x9;, [ProductCategoryID] = T1.[ProductCategoryID]&#xA;&#x9;, [ProductCategoryName] = T1.[Name]&#xA;&#x9;, [ParentProductCategoryName] = T2.Name&#xA;&#x9;FROM [AdventureWorksLT2012].[SalesLT].[ProductCategory] as T1&#xA;&#x9;JOIN [AdventureWorksLT2012].[SalesLT].[ProductCategory] as T2&#xA;&#x9;  ON T1.ParentProductCategoryID = T2.ProductCategoryID &#xA;&#x9;JOIN [AdventureWorksLT2012].[SalesLT].[Product] as T3&#xA;&#x9;  ON T1.ProductCategoryID = T3.ProductCategoryID&#xA;&#x9;Left JOIN [DWAdventureWorksLT2012v1].[dbo].[ETLNullStatuses] as T4&#xA;&#x9; ON  IsNull( T3.SellEndDate ,'9999-12-31') = T4.NullStatusDateKey&#xA;&#x9;;&#xA;go&#xA;&#xA;CREATE VIEW vETLDimCustomers&#xA;AS&#xA;&#x9;SELECT &#xA;&#x9;  [CustomerID] = [CustomerID]&#xA;&#x9;, [ContactFullName] = Convert( nvarchar(200), [FirstName] + ' ' + [LastName])&#xA;&#x9;, [CompanyName] = Cast( [CompanyName] AS nvarchar(200) )&#xA;&#x9;, [SalesPersonAlias] = Cast( Substring( [SalesPerson], PatIndex( '%\%',[SalesPerson] ) + 1, 256 ) AS nvarchar(200) )&#xA;&#x9;FROM [AdventureWorksLT2012].[SalesLT].[Customer]&#xA;&#x9;;&#xA;go&#xA;&#xA;CREATE VIEW vETLFactSales&#xA;AS&#xA;&#x9;SELECT &#xA;&#x9;  SalesOrderID = T2.SalesOrderID&#xA;&#x9;, SalesOrderDetailID = T1.SalesOrderDetailID&#xA;&#x9;, OrderDateKey = T6.CalendarDateKey&#xA;&#x9;, ShipDateKey = T5.CalendarDateKey&#xA;&#x9;, CustomerKey = T4.CustomerKey&#xA;&#x9;, ProductKey = T3.ProductKey&#xA;&#x9;, OrderQty = T1.OrderQty&#xA;&#x9;, UnitPrice = T1.UnitPrice&#xA;&#x9;, UnitPriceDiscount = T1.UnitPriceDiscount&#xA;&#x9;FROM  [AdventureWorksLT2012].SalesLT.SalesOrderDetail as T1&#xA;&#x9;JOIN [AdventureWorksLT2012].SalesLT.SalesOrderHeader as T2&#xA;&#x9;  ON T1.SalesOrderID = T2.SalesOrderID&#xA;&#x9;JOIN DWAdventureWorksLT2012v1.dbo.DimProducts as T3&#xA;&#x9; ON T1.ProductID = T3.ProductID&#xA;&#x9;JOIN DWAdventureWorksLT2012v1.dbo.DimCustomers as T4&#xA;&#x9; ON T2.CustomerID = T4.CustomerID&#xA;&#x9;JOIN DWAdventureWorksLT2012v1.dbo. DimDates as T5&#xA;&#x9; ON Cast(T2.ShipDate as date) = Cast(T5.CalendarDate as date)&#xA;&#x9;JOIN DWAdventureWorksLT2012v1.dbo. DimDates as T6&#xA;&#x9; ON Cast(T2.OrderDate as date) = Cast(T6.CalendarDate as date)&#xA;&#x9;;&#xA;go&#xA;&#xA;&#xA;--********************************************************************--&#xA;-- Create the ETL Stored Procedures&#xA;--********************************************************************--&#xA;&#xA;-- DimProducts ETL processing code --&#xA;CREATE  &#xA;PROCEDURE pETLDimProducts&#xA;AS&#xA;&#x9;/**************************************************************&#xA;&#x9;Desc: &lt;Desc Goes Here&gt;&#xA;&#x9;ChangeLog: When, Who, What&#xA;&#x9;20160101,RRoot,Created Procedure  &#xA;&#x9;**************************************************************/&#xA;Begin -- Procedure Code&#xA; Declare &#xA;   @RC int = 0;&#xA; Begin Try &#xA;  Begin Transaction; &#xA;  -- ETL Code  -------------------------------------------------------------------&#xA;&#x9;  INSERT INTO [dbo].[DimProducts]&#xA;&#x9;( [ProductID]&#xA;&#x9;, [ProductName]&#xA;&#x9;, [ProductColor]&#xA;&#x9;, [ProductSize]&#xA;&#x9;, [ProductSellingStartDate]&#xA;&#x9;, [ProductSellingEndDate]&#xA;&#x9;, [ProductSellingEndDateText] &#xA;&#x9;, [ProductCategoryID]&#xA;&#x9;, [ProductCategoryName]&#xA;&#x9;, [ParentProductCategoryName]&#xA;&#x9;)&#xA;&#x9;SELECT &#xA;&#x9;  [ProductID] &#xA;&#x9;, [ProductName] &#xA;&#x9;, [ProductColor] &#xA;&#x9;, [ProductSize] &#xA;&#x9;, [ProductSellingStartDate] &#xA;&#x9;, [ProductSellingEndDate] &#xA;&#x9;, [ProductSellingEndDateText]&#xA;&#x9;, [ProductCategoryID] &#xA;&#x9;, [ProductCategoryName] &#xA;&#x9;, [ParentProductCategoryName]&#xA;&#x9;FROM DWAdventureWorksLT2012v1.dbo.vETLDimProducts&#xA;&#x9;;&#xA;   -- ETL Code  -------------------------------------------------------------------&#xA;  Commit Transaction;&#xA;  Set @RC = 100; -- Success&#xA; End Try&#xA; Begin Catch&#xA;  Rollback Tran;&#xA;  Set @RC = -100; -- Failure&#xA; End Catch&#xA; Return @RC;&#xA;End -- Procedure Code&#xA;;&#xA;go&#xA;&#xA;-- DimCustomers ETL processing code -- &#xA;CREATE &#xA;PROCEDURE pETLDimCustomers&#xA;AS&#xA;&#x9;/**************************************************************&#xA;&#x9;Desc: &lt;Desc Goes Here&gt;&#xA;&#x9;ChangeLog: When, Who, What&#xA;&#x9;20160101,RRoot,Created Procedure  &#xA;&#x9;**************************************************************/&#xA;Begin -- Procedure Code&#xA; Declare &#xA;   @RC int = 0;&#xA; Begin Try &#xA;  Begin Transaction; &#xA;  -- ETL Code  -------------------------------------------------------------------&#xA;&#x9;INSERT INTO [DWAdventureWorksLT2012v1].[dbo].[DimCustomers]&#xA;&#x9;( [CustomerID]&#xA;&#x9;, [ContactFullName]&#xA;&#x9;, [CompanyName]&#xA;&#x9;, [SalesPersonAlias]&#xA;&#x9;)&#xA;&#x9;SELECT &#xA;&#x9;  [CustomerID]&#xA;&#x9;, [ContactFullName]&#xA;&#x9;, [CompanyName]&#xA;&#x9;, [SalesPersonAlias]&#xA;&#x9;FROM DWAdventureWorksLT2012v1.dbo.vETLDimCustomers&#xA;&#x9;;  &#xA;  -- ETL Code  -------------------------------------------------------------------&#xA;  Commit Transaction;&#xA;  Set @RC = 100; -- Success&#xA; End Try&#xA; Begin Catch&#xA;  Rollback Tran;&#xA;  Set @RC = -100; -- Failure&#xA; End Catch&#xA; Return @RC;&#xA;End -- Procedure Code&#xA;;&#xA;go&#xA;&#xA;-- FactSales ETL processing code -- &#xA;CREATE&#xA;PROCEDURE pETLFactSales&#xA;AS&#xA;&#x9;/**************************************************************&#xA;&#x9;Desc: &lt;Desc Goes Here&gt;&#xA;&#x9;ChangeLog: When, Who, What&#xA;&#x9;20160101,RRoot,Created Procedure  &#xA;&#x9;**************************************************************/&#xA;Begin -- Procedure Code&#xA; Declare &#xA;   @RC int = 0;&#xA; Begin Try &#xA;  Begin Transaction; &#xA;  -- ETL Code  -------------------------------------------------------------------&#xA;  &#x9;  INSERT INTO [dbo].[FactSales]&#xA;&#x9;( [SalesOrderID]&#xA;&#x9;, [SalesOrderDetailID]&#xA;&#x9;, [OrderDateKey]&#xA;&#x9;, [ShipDateKey]&#xA;&#x9;, [CustomerKey] &#xA;&#x9;, [ProductKey] &#xA;&#x9;, [OrderQty]&#xA;&#x9;, [UnitPrice]&#xA;&#x9;, [UnitPriceDiscount]&#xA;&#x9;) &#xA;&#x9;SELECT &#xA;&#x9;  SalesOrderID&#xA;&#x9;, SalesOrderDetailID&#xA;&#x9;, OrderDateKey&#xA;&#x9;, ShipDateKey&#xA;&#x9;, CustomerKey&#xA;&#x9;, ProductKey&#xA;&#x9;, OrderQty&#xA;&#x9;, UnitPrice&#xA;&#x9;, UnitPriceDiscount&#xA;&#x9;FROM DWAdventureWorksLT2012v1.dbo.vETLFactSales&#xA;&#x9;; &#xA;  -- ETL Code  -------------------------------------------------------------------&#xA;  Commit Transaction;&#xA;  Set @RC = 100; -- Success&#xA; End Try&#xA; Begin Catch&#xA;  Rollback Tran;&#xA;  Set @RC = -100; -- Failure&#xA; End Catch&#xA; Return @RC;&#xA;End -- Procedure Code&#xA;;&#xA;go &#xA;&#xA;Select 'Version 1 of the database was created';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Main Job\Truncate Tables Execure SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{68706C98-B6E5-400B-848F-A2F8FFB2229D}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate Tables Execure SQL Task"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Main Job.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{5345698B-27ED-4BF4-B470-9FDE66E8BB21}"
+          DTS:From="Package\Main Job\Load DImProducts Execute SQL Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Main Job\Load DImCustomers Execute SQL Task" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Main Job.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{591CB509-A518-4450-B2E9-62AB4A53300A}"
+          DTS:From="Package\Main Job\Reset the DW Database Execute SQL Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Main Job\Drop Foreign Keys Execute SQL Task" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Main Job.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{258B633D-5230-43F2-8C73-CD25A2E4BF0F}"
+          DTS:From="Package\Main Job\Truncate Tables Execure SQL Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Main Job\Load DImProducts Execute SQL Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Main Job Failed"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{92ac12bf-1665-47a2-ba5b-f05c88ab0254}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Main Job Failed"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::vMessage] = &quot;Failed on Main Job&quot;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Post Job"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{47a96841-7886-4e5e-8be5-4f077916a34e}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Post Job">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Post Job\Get End time"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{dd11993a-3bd5-4004-a404-613d98237551}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Get End time"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::vEnd_Date] =GETDATE()" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Post Job\Insert Error Handling"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{f6162d49-463c-4cd2-95f8-6581378a1ff1}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Insert Error Handling"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AC594831-28F6-48F7-A72E-FF4FE5E19200}"
+              SQLTask:SqlStatementSource="INSERT INTO dbo.Job_Error_Handling&#xA;Select ?&#xA;,?&#xA;,?&#xA;,?&#xA;,?&#xA;,?&#xA;,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="$Package::vJob_Run_Id"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_Job_Control_Id"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="$Project::Operation_Id"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::vSource_System"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="5"
+                SQLTask:DtsVariableName="User::vError_Description"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="6"
+                SQLTask:DtsVariableName="User::vEnd_Date"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Post Job\Update Job Control"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{a5c02ebc-cb89-4c6f-9ea1-1a85d85eb744}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Job Control"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AC594831-28F6-48F7-A72E-FF4FE5E19200}"
+              SQLTask:SqlStatementSource="UPDATE dbo.Job_Control&#xA;SET&#xA;Control_Message =?&#xA;,Control_Start_Date = ?&#xA;,Control_End_Date = ?&#xA;,Source_System = ?&#xA;,Source_Count = ?&#xA;,Target_Count = ?&#xA;,Update_Count = ?&#xA;,Delete_Count = ?&#xA;,Insert_Count = ?&#xA;,Upsert_Count = ?&#xA;,Controlled = ?&#xA;Where Control_run_id = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::vMessage"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::vStart_Date"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::vEnd_Date"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::vSource_System"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="User::vSourceCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="5"
+                SQLTask:DtsVariableName="User::vTargetCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="6"
+                SQLTask:DtsVariableName="User::vUpdateCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="7"
+                SQLTask:DtsVariableName="User::vDeleteCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="8"
+                SQLTask:DtsVariableName="User::vInsertCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="9"
+                SQLTask:DtsVariableName="User::vUpsertCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="10"
+                SQLTask:DtsVariableName="User::vControlled"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="11"
+                SQLTask:DtsVariableName="User::v_Job_Control_Id"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Post Job.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{d750f316-67af-44dc-b3ff-7384d66bf433}"
+          DTS:From="Package\Post Job\Get End time"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Post Job\Update Job Control" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Post Job.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{0cec3ea4-9574-4ac7-9c14-d456c5b361eb}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::vMessage] !=&quot;Success&quot;"
+          DTS:From="Package\Post Job\Update Job Control"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Post Job\Insert Error Handling" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Pre Job"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{bb93c751-3b66-48d9-a395-58fb10b962b7}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Pre Job">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Pre Job\Expression Task"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{cb7ba4fb-9075-4dc2-b0b7-2f48eff625e9}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Expression Task"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::vStart_Date]=GETDATE()" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Pre Job\Get Control Run ID"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{48f3f33c-4912-4b53-881f-4a2038001886}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Get Control Run ID"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CF94D6C2-0FB0-4BFD-B920-4E2B76F43707}"
+              SQLTask:SqlStatementSource="SELECT MAX(Control_run_id)Control_run_id&#xA;from [SSISDB].dbo.[Job_Control]&#xA; Where Job_Run_id = ?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_Job_Control_Id" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="$Package::vJob_Run_Id"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Pre Job\Insert Job Control"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{cdfeafd3-9d9a-401c-ae55-6be0a73e2027}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Insert Job Control"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CF94D6C2-0FB0-4BFD-B920-4E2B76F43707}"
+              SQLTask:SqlStatementSource="Insert into dbo.Job_Control&#xA;(Job_Run_id, Control_Name)&#xA;Values (?,?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="$Package::vJob_Run_Id"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Pre Job.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{2cc53a47-1518-48ff-8f4d-ebf849032244}"
+          DTS:From="Package\Pre Job\Expression Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Pre Job\Insert Job Control" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Pre Job.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{de9177bc-a83a-4fcd-b9bf-8bd20722d1e1}"
+          DTS:From="Package\Pre Job\Insert Job Control"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Pre Job\Get Control Run ID" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{EEA7F7F9-40EC-4809-8205-6AA1BF892A28}"
+      DTS:From="Package\Main Job"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Main Job Failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{6586365d-b364-4ffb-abdc-c927adbbbb9c}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::vSourceCount] == @[User::vInsertCount]"
+      DTS:From="Package\Main Job"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Controlled  SW" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{7AE1FBDE-0875-4F21-B5F5-EB06204B2DC6}"
+      DTS:From="Package\Pre Job"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Main Job" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{1bf66870-5a56-4ba9-9b5c-e8e41e7d99bd}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::vSourceCount] != @[User::vInsertCount]"
+      DTS:From="Package\Main Job"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Control MisMatch" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{230ed535-0b8c-43f4-80f1-693f58e3c316}"
+      DTS:From="Package\Controlled  SW"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Post Job" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{cc573ff2-f760-4bd9-b0ee-257e39d3ef24}"
+      DTS:From="Package\Main Job Failed"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Post Job" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{8978cace-8a17-45eb-b563-fd644e74d23c}"
+      DTS:From="Package\Control MisMatch"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Post Job" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="160,50"
+          Id="Package\Control MisMatch"
+          TopLeft="646.111102377376,1027.60554693782" />
+        <NodeLayout
+          Size="149.333333333334,42.6666666666667"
+          Id="Package\Controlled  SW"
+          TopLeft="153.749998603016,1042.54998519629" />
+        <NodeLayout
+          Size="254.666666666667,42.6666666666667"
+          Id="Package\Main Job\Load DImProducts Execute SQL Task"
+          TopLeft="91.708332448577,278.416662153105" />
+        <NodeLayout
+          Size="262.666666666667,42.6666666666667"
+          Id="Package\Main Job\Load DImCustomers Execute SQL Task"
+          TopLeft="87.1249937446167,396.999987912179" />
+        <NodeLayout
+          Size="278.666666666667,42.6666666666667"
+          Id="Package\Main Job\Reset the DW Database Execute SQL Task"
+          TopLeft="80.7083282265812,19.9999955058098" />
+        <EdgeLayout
+          Id="Package\Main Job.PrecedenceConstraints[Constraint]"
+          TopLeft="218.74999642993,321.083328819772">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,75.9166590924071"
+              Start="0,0"
+              End="0,68.4166590924071">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,68.4166590924071" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="253.333333333334,42.6666666666667"
+          Id="Package\Main Job\Drop Foreign Keys Execute SQL Task"
+          TopLeft="94.2499946914616,111.416663547854" />
+        <NodeLayout
+          Size="242.666666666667,42.6666666666667"
+          Id="Package\Main Job\Truncate Tables Execure SQL Task"
+          TopLeft="92.1666613891721,176.416662385563" />
+        <EdgeLayout
+          Id="Package\Main Job.PrecedenceConstraints[Constraint 1]"
+          TopLeft="220.479161459021,62.6666621724765">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48.7500013753774"
+              Start="0,0"
+              End="0,41.2500013753774">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.2500013753774" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Main Job.PrecedenceConstraints[Constraint 2]"
+          TopLeft="216.270830252208,219.08332905223">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.3333331008753"
+              Start="0,0"
+              End="0,51.8333331008753">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.8333331008753" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="466,494"
+          Size="466,537.333333333334"
+          Id="Package\Main Job"
+          TopLeft="262.083330322057,438.633321222266" />
+        <NodeLayout
+          Size="152,42.6666666666667"
+          Id="Package\Main Job Failed"
+          TopLeft="411.438486826649,1142.22459067149" />
+        <NodeLayout
+          Size="141.333333333334,42.6666666666667"
+          Id="Package\Post Job\Get End time"
+          TopLeft="79.3333270748457,5.5" />
+        <NodeLayout
+          Size="178.666666666667,42.6666666666667"
+          Id="Package\Post Job\Insert Error Handling"
+          TopLeft="64.3333272983632,199.666658065717" />
+        <NodeLayout
+          Size="169.333333333334,42.6666666666667"
+          Id="Package\Post Job\Update Job Control"
+          TopLeft="68.4999939029417,94.7333262511098" />
+        <EdgeLayout
+          Id="Package\Post Job.PrecedenceConstraints[Constraint]"
+          TopLeft="151.58332715556,48.1666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46.5666595844432"
+              Start="0,0"
+              End="0,39.0666595844432">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.0666595844432" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Post Job.PrecedenceConstraints[Constraint 1]"
+          TopLeft="153.416660600652,137.399992917776">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62.2666651479402"
+              Start="0,0"
+              End="0,54.7666651479402">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.7666651479402" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,19.3833325739701,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="293.333333333334,297.333333333334"
+          Size="293.333333333334,340"
+          Id="Package\Post Job"
+          TopLeft="340.138884714495,1404.14998651872" />
+        <NodeLayout
+          Size="154.666666666667,42.6666666666667"
+          Id="Package\Pre Job\Expression Task"
+          TopLeft="42.666661053896,5.58888777567285" />
+        <NodeLayout
+          Size="169.333333333334,42.6666666666667"
+          Id="Package\Pre Job\Get Control Run ID"
+          TopLeft="45.2222170482081,188.611106784807" />
+        <NodeLayout
+          Size="164,42.6666666666667"
+          Id="Package\Pre Job\Insert Job Control"
+          TopLeft="50.7777725209793,95.4444417840906" />
+        <EdgeLayout
+          Id="Package\Pre Job.PrecedenceConstraints[Constraint]"
+          TopLeft="119.999994387229,48.2555544423395">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="12.77777813375,47.188887341751"
+              Start="0,0"
+              End="12.77777813375,39.688887341751">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5944436708755" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.5944436708755"
+                    Point2="0,23.5944436708755"
+                    Point3="4,23.5944436708755" />
+                  <mssgle:LineSegment
+                    End="8.77777813375,23.5944436708755" />
+                  <mssgle:CubicBezierSegment
+                    Point1="8.77777813375,23.5944436708755"
+                    Point2="12.77777813375,23.5944436708755"
+                    Point3="12.77777813375,27.5944436708755" />
+                  <mssgle:LineSegment
+                    End="12.77777813375,39.688887341751" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Pre Job.PrecedenceConstraints[Constraint 1]"
+          TopLeft="131.333328117927,138.111108450757">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50.4999983340502"
+              Start="0,0"
+              End="0,42.9999983340502">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.9999983340502" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="283.333333333334,286.666666666667"
+          Size="283.333333333334,329.333333333334"
+          Id="Package\Pre Job"
+          TopLeft="348.375005473071,0.416667732099683" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="380.583330322057,975.9666545556">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-152.166665052374,66.5833306406937"
+              Start="0,0"
+              End="-152.166665052374,59.0833306406937">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.4470118945155" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.4470118945155"
+                    Point2="0,22.4470118945155"
+                    Point3="-4,22.4470118945155" />
+                  <mssgle:LineSegment
+                    End="-148.166665052374,22.4470118945155" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-148.166665052374,22.4470118945155"
+                    Point2="-152.166665052374,22.4470118945155"
+                    Point3="-152.166665052374,26.4470118945155" />
+                  <mssgle:LineSegment
+                    End="-152.166665052374,59.0833306406937" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-84.0833325261869,27.4470118945155,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="609.583330322057,975.9666545556">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="116.527772055319,51.6388923822165"
+              Start="0,0"
+              End="116.527772055319,44.1388923822165">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.4088442312735" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.4088442312735"
+                    Point2="0,17.4088442312735"
+                    Point3="4,17.4088442312735" />
+                  <mssgle:LineSegment
+                    End="112.527772055319,17.4088442312735" />
+                  <mssgle:CubicBezierSegment
+                    Point1="112.527772055319,17.4088442312735"
+                    Point2="116.527772055319,17.4088442312735"
+                    Point3="116.527772055319,21.4088442312735" />
+                  <mssgle:LineSegment
+                    End="116.527772055319,44.1388923822165" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="50.2638860276595,22.4088442312735,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="228.416665269683,1085.21665186296">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="187.055552778146,318.933334655765"
+              Start="0,0"
+              End="187.055552778146,311.433334655765">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,206.706707580385" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,206.706707580385"
+                    Point2="0,210.706707580385"
+                    Point3="4,210.706707580385" />
+                  <mssgle:LineSegment
+                    End="183.055552778146,210.706707580385" />
+                  <mssgle:CubicBezierSegment
+                    Point1="183.055552778146,210.706707580385"
+                    Point2="187.055552778146,210.706707580385"
+                    Point3="187.055552778146,214.706707580385" />
+                  <mssgle:LineSegment
+                    End="187.055552778146,311.433334655765" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="487.122019103905,1184.89125733816">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,219.258729180568"
+              Start="0,0"
+              End="0,211.758729180568">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,211.758729180568" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="726.111102377376,1077.60554693782">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-167.972217662881,326.544439580909"
+              Start="0,0"
+              End="-167.972217662881,319.044439580909">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,211.735065188588" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,211.735065188588"
+                    Point2="0,215.735065188588"
+                    Point3="-4,215.735065188588" />
+                  <mssgle:LineSegment
+                    End="-163.972217662881,215.735065188588" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-163.972217662881,215.735065188588"
+                    Point2="-167.972217662881,215.735065188588"
+                    Point3="-167.972217662881,219.735065188588" />
+                  <mssgle:LineSegment
+                    End="-167.972217662881,319.044439580909" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="491.260908574353,975.9666545556">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,166.25793611589"
+              Start="0,0"
+              End="0,158.75793611589">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,158.75793611589" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-15.24134765625,74.504456339195,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="492.562501230897,329.750001065433">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,108.883320156833"
+              Start="0,0"
+              End="0,101.383320156833">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,101.383320156833" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
