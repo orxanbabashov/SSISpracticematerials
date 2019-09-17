@@ -11,12 +11,249 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Master_DWH"
   DTS:PackageType="5"
-  DTS:VersionBuild="1"
-  DTS:VersionGUID="{B6AD7282-F6C0-4CC3-BBCF-20C2207BA002}">
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{C096DEE3-F0B1-4221-AE83-7D3879273586}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:Variables />
-  <DTS:Executables />
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2E244165-B66B-44D8-A58A-84F9B2A6FD24}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Error_Email_Sent">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{28BFC24E-04AA-4BDF-9448-3954EEC903DE}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4F9B53E2-341C-4657-812C-87FA099575D7}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vEnd_Date">
+      <DTS:VariableValue
+        DTS:DataType="7">9/17/2019 12:43:04 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{645AC7E0-275D-4E3E-9ED2-7254F9642315}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vJob_Run_Id">
+      <DTS:VariableValue
+        DTS:DataType="3">1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AAE66466-4FA6-4F0F-9141-CE54FFC5EB1F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="vMailJobErrorsMsg">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F9EB4886-23CA-4632-B5F2-BB51472DD10B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="vMailJobRunResultsMsg">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9DC3BC76-73CF-4BDA-8298-3089F6F61FCF}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="vMessage">
+      <DTS:VariableValue
+        DTS:DataType="8">Success</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7CB861BD-DCE1-41E5-842C-9707FBC8EC81}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="vMessageMail">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BF1B1349-B5F6-4975-A6F9-9BA450A53BA1}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;Select Control_run_id ,Job_Run_id ,Control_Name ,Control_Message ,Control_Start_Date ,Control_End_Date ,Source_System ,Source_Count  ,Target_Count ,Update_Count ,Delete_Count ,Insert_Count ,Upsert_Count ,MisMatch_Count ,Controlled from Job_Control Where job_run_id = &quot; + (DT_STR,4,1252) @[User::vJob_Run_Id]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="vQry_Job_Control">
+      <DTS:VariableValue
+        DTS:DataType="8">Select Control_run_id ,Job_Run_id ,Control_Name ,Control_Message ,Control_Start_Date ,Control_End_Date ,Source_System ,Source_Count  ,Target_Count ,Update_Count ,Delete_Count ,Insert_Count ,Upsert_Count ,MisMatch_Count ,Controlled from Job_Control Where job_run_id = 1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F53A1050-03CC-4A5F-B05E-E4BB4948DA5F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="vRun_Time">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AA2EC8C9-81C2-4B0E-8DDF-5946D8B7B9D7}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vStart_Date">
+      <DTS:VariableValue
+        DTS:DataType="7">9/17/2019 12:59:17 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F9F5D334-5E8E-428F-8C71-128848DCDF90}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="vSubjectLine">
+      <DTS:VariableValue
+        DTS:DataType="8">Control Issue - Loading DWH dimension tables and fact tables .Please investigate the issue</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3DB70FC9-18DE-4D01-9323-FB44F65B6CE9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="vTemp_Mess">
+      <DTS:VariableValue
+        DTS:DataType="8">of the Source to DWH controls have exceeeded their tolerance. See the Job_Control and Job_Error_Handling tables for more details.</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6C081301-727F-4AA4-8CC7-2A04E36287E6}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[System::PackageName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Source_Name">
+      <DTS:VariableValue
+        DTS:DataType="8">Master_DWH</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Pre Job"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{c0ea6713-a30c-46e9-9365-cd5f3f406b49}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Pre Job">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Pre Job\Getting Job Run ID"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{ce0d8fb6-d203-4aec-a19c-f8725459ef38}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Getting Job Run ID"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AC594831-28F6-48F7-A72E-FF4FE5E19200}"
+              SQLTask:SqlStatementSource="SELECT MAX(Control_run_id)Control_run_id&#xA;from [SSISDB].dbo.[Job_Control]&#xA; Where Job_Run_id = ?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_Job_Control_Id" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="$Package::vJob_Run_Id"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Pre Job\Getting Start Date"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{a5c63f9e-d878-46ee-b08e-178952e402a1}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Getting Start Date"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::vStart_Date]=GETDATE()" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Pre Job\Inserting new job"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{df82fedc-572c-438f-9594-1e9ea5ca3151}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Inserting new job"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AC594831-28F6-48F7-A72E-FF4FE5E19200}"
+              SQLTask:SqlStatementSource="Insert into dbo.Job_Control&#xA;(Job_Run_id, Control_Name)&#xA;Values (?,?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="$Package::vJob_Run_Id"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Pre Job.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{5fed8b73-4211-4c93-8864-ab7434a93fc0}"
+          DTS:From="Package\Pre Job\Getting Start Date"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Pre Job\Inserting new job" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Pre Job.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{5b0033a2-a056-4572-ada3-35bac1540309}"
+          DTS:From="Package\Pre Job\Inserting new job"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Pre Job\Getting Job Run ID" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -24,5 +261,76 @@
 <Objects
   Version="8">
   <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="165.333333333334,42.6666666666667"
+          Id="Package\Pre Job\Getting Start Date"
+          TopLeft="42.666661053896,5.58888777567285" />
+        <NodeLayout
+          Size="169.333333333334,42.6666666666667"
+          Id="Package\Pre Job\Getting Job Run ID"
+          TopLeft="45.2222170482081,188.611106784807" />
+        <NodeLayout
+          Size="162.666666666667,42.6666666666667"
+          Id="Package\Pre Job\Inserting new job"
+          TopLeft="50.7777725209793,95.4444417840906" />
+        <EdgeLayout
+          Id="Package\Pre Job.PrecedenceConstraints[Constraint]"
+          TopLeft="128.722216787438,48.2555544423395">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47.1888873417511"
+              Start="0,0"
+              End="0,39.6888873417511">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.6888873417511" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Pre Job.PrecedenceConstraints[Constraint 1]"
+          TopLeft="130.999994784594,138.111108450757">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50.4999983340497"
+              Start="0,0"
+              End="0,42.9999983340497">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.9999983340497" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="283.333333333334,286.666666666667"
+          Size="283.333333333334,329.333333333334"
+          Id="Package\Pre Job"
+          TopLeft="302.499996386468,19.2666673950354" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
