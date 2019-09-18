@@ -11,10 +11,21 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Child_DWH"
   DTS:PackageType="5"
-  DTS:VersionBuild="8"
-  DTS:VersionGUID="{FDE5DDDA-7037-4E7A-9883-D114F7DD5407}">
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{571A846B-3889-4A3F-B180-199B0A526FA0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:DTSID="{338C1E9F-8952-43B3-A233-B152C8CDF50D}"
+      DTS:ObjectName="vJob_Run_Id">
+      <DTS:Property
+        DTS:DataType="3"
+        DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
@@ -119,7 +130,7 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="316.666666666667,248.666666666667"
+          PanelSize="316.666666666667,249.333333333334"
           Size="316.666666666667,292"
           Id="Package\Main Job"
           TopLeft="227.222218836347,100.966664861242" />
