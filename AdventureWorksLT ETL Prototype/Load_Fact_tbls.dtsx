@@ -11,21 +11,11 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Load_Fact_tbls"
   DTS:PackageType="5"
-  DTS:VersionBuild="27"
-  DTS:VersionGUID="{6E5C7AB9-B921-48A7-8FC3-B1DF6595C9D1}">
+  DTS:VersionBuild="30"
+  DTS:VersionGUID="{7872F97D-46C7-4699-9E04-98898B041E61}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[LVAGPLTP3455.DWAdventureWorksLT2012v1]"
-      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
-      DTS:DTSID="{F9E7160E-308A-42A6-96D1-5185CD7C316B}"
-      DTS:ObjectName="LVAGPLTP3455.DWAdventureWorksLT2012v1">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=LVAGPLTP3455;Initial Catalog=DWAdventureWorksLT2012v1;Integrated Security=True;Application Name=SSIS-Load_Fact_tbls-{F9E7160E-308A-42A6-96D1-5185CD7C316B}LVAGPLTP3455.DWAdventureWorksLT2012v1;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[SQL Connection]"
       DTS:CreationName="OLEDB"
@@ -67,7 +57,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="vDateString">
       <DTS:VariableValue
-        DTS:DataType="8">20190917</DTS:VariableValue>
+        DTS:DataType="8">20190918</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -196,7 +186,7 @@
       DTS:ExecutableType="Microsoft.ExpressionTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Control MisMatch"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <ExpressionTask
@@ -211,7 +201,7 @@
       DTS:ExecutableType="Microsoft.ExpressionTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Controlled  SW"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <ExpressionTask
@@ -241,8 +231,7 @@
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{F9E7160E-308A-42A6-96D1-5185CD7C316B}"
-              SQLTask:IsStoredProc="True"
+              SQLTask:Connection="{CCF281D1-59AE-49AB-B69D-0820645FE0CD}"
               SQLTask:SqlStatementSource="pETLFactSales" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
@@ -259,7 +248,7 @@
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{F9E7160E-308A-42A6-96D1-5185CD7C316B}"
+              SQLTask:Connection="{CCF281D1-59AE-49AB-B69D-0820645FE0CD}"
               SQLTask:SqlStatementSource="ALTER TABLE dbo.FactSales ADD CONSTRAINT&#xA;&#x9;fkFactSalesToDimProducts FOREIGN KEY (ProductKey) &#xA;&#x9;REFERENCES dbo.DimProducts&#x9;(ProductKey);&#xA;&#xA;ALTER TABLE dbo.FactSales ADD CONSTRAINT &#xA;&#x9;fkFactSalesToDimCustomers FOREIGN KEY (CustomerKey) &#xA;&#x9;REFERENCES dbo.DimCustomers (CustomerKey);&#xA;&#xA;ALTER TABLE dbo.FactSales ADD CONSTRAINT&#xA;&#x9;fkFactSalesOrderDateToDimDates FOREIGN KEY (OrderDateKey) &#xA;&#x9;REFERENCES dbo.DimDates(CalendarDateKey);&#xA;&#xA;ALTER TABLE dbo.FactSales ADD CONSTRAINT&#xA;&#x9;fkFactSalesShipDateDimDates FOREIGN KEY (ShipDateKey)&#xA;&#x9;REFERENCES dbo.DimDates (CalendarDateKey);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
@@ -647,6 +636,44 @@
       DTS:ObjectName="Constraint 6"
       DTS:To="Package\Post Job" />
   </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{343A848C-75DD-4E98-98BD-B87E499A5A27}"
+      DTS:EventID="6094948"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{474FFF87-2462-4769-95B9-E6B1A0729833}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Expression Task"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{8FDDD365-C176-429F-88F0-4B72BC4E366B}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Expression Task">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::vError_Description] =  @[System::ErrorDescription]" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -668,13 +695,13 @@
           Id="Package\Controlled  SW"
           TopLeft="68.5416659433399,955.966658274929" />
         <NodeLayout
-          Size="234.666666666667,42"
-          Id="Package\Main Job\Replace Foreign Keys Constraints Execute SQL Task"
-          TopLeft="33.2083329204469,206.39999938786" />
-        <NodeLayout
           Size="237.333333333334,42.6666666666667"
           Id="Package\Main Job\Load FactSales Execute SQL Task"
           TopLeft="37.5416665890565,59.5000005036591" />
+        <NodeLayout
+          Size="234.666666666667,42"
+          Id="Package\Main Job\Replace Foreign Keys Constraints Execute SQL Task"
+          TopLeft="33.2083329204469,206.39999938786" />
         <EdgeLayout
           Id="Package\Main Job.PrecedenceConstraints[Constraint]"
           TopLeft="153.374999754752,102.166667170326">
@@ -700,7 +727,7 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="313.333333333334,452.666666666667"
+          PanelSize="313.333333333334,453.333333333334"
           Size="313.333333333334,496"
           Id="Package\Main Job"
           TopLeft="325.833328776062,409.466659940879" />
@@ -774,13 +801,13 @@
           Id="Package\Post Job"
           TopLeft="333.402773107713,1081.09443854389" />
         <NodeLayout
-          Size="165.333333333334,42.6666666666667"
-          Id="Package\Pre Job\Getting Start Date"
-          TopLeft="42.666661053896,5.58888777567285" />
-        <NodeLayout
           Size="169.333333333334,42.6666666666667"
           Id="Package\Pre Job\Get Control Run ID"
           TopLeft="45.2222170482081,188.611106784807" />
+        <NodeLayout
+          Size="165.333333333334,42.6666666666667"
+          Id="Package\Pre Job\Getting Start Date"
+          TopLeft="42.666661053896,5.58888777567285" />
         <NodeLayout
           Size="164,42.6666666666667"
           Id="Package\Pre Job\Insert Job Control"
@@ -835,21 +862,21 @@
           PanelSize="283.333333333334,286.666666666667"
           Size="283.333333333334,330"
           Id="Package\Pre Job"
-          TopLeft="347.54167155611,44.9166718001161" />
+          TopLeft="348.375004877026,44.9166718001161" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="485.854166832753,374.250005133449">
+          TopLeft="486.27083349321,374.916671800116">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,35.2166548074296"
+              EndConnector="0,34.5499881407629"
               Start="0,0"
-              End="0,27.7166548074296">
+              End="0,27.0499881407629">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,27.7166548074296" />
+                    End="0,27.0499881407629" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1047,5 +1074,17 @@
       </GraphLayout>
     </LayoutInfo>
   </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="154.666666666667,42.6666666666667"
+          Id="Package.EventHandlers[OnError]\Expression Task"
+          TopLeft="406,114.666666666667" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>

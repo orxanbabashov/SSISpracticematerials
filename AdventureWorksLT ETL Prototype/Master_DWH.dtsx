@@ -11,11 +11,154 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Master_DWH"
   DTS:PackageType="5"
-  DTS:VersionBuild="13"
-  DTS:VersionGUID="{FF5FFECF-0080-4739-BA04-C1371A5F6D62}">
+  DTS:VersionBuild="22"
+  DTS:VersionGUID="{1EA3FCD0-42EA-4648-B119-3AB84D43E098}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Job_Control]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{FA7EF9E8-00A8-49B6-B693-516FE1FEC73B}"
+      DTS:ObjectName="Job_Control">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\logs\Source AdventureWork.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Control_run_id"
+              DTS:DTSID="{5553ADA8-7FCB-48ED-B576-6F90DE297C55}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Job_Run_id"
+              DTS:DTSID="{71EF2E89-142E-4E53-A064-CAB435E02FD0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Control_Name"
+              DTS:DTSID="{AB542EF8-7349-4BDA-9139-82A92CB156F8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Control_Message"
+              DTS:DTSID="{04BAA58F-C924-45DD-A0A6-C078A2B612EB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="135"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Control_Start_Date"
+              DTS:DTSID="{C8156C84-2C91-40CC-ABB6-129AF67B8160}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="135"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Control_End_Date"
+              DTS:DTSID="{75CE0BAF-98B1-47FF-883B-22A4A05C861C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Source_System"
+              DTS:DTSID="{A4B0FE04-37D1-4522-AC40-93D3F9CD1A4B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Source_Count"
+              DTS:DTSID="{7045C3FC-FA7F-4B76-B2D7-8D5E1E01EC13}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Target_Count"
+              DTS:DTSID="{CEEE4151-6A87-4646-B665-4D27A77C301D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Update_Count"
+              DTS:DTSID="{988EB922-C6B1-4098-8F83-6F22EF87CB5F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Delete_Count"
+              DTS:DTSID="{A91E52DB-EE02-4346-BA53-A476B7239467}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Insert_Count"
+              DTS:DTSID="{832A9FB9-FA1B-46CB-AB41-560A22649668}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Upsert_Count"
+              DTS:DTSID="{4A8A57C1-795E-4694-B16F-89CFBC2AB07E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="MisMatch_Count"
+              DTS:DTSID="{C095E09C-43B2-4A07-91DA-373724DD8A02}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="1"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Controlled"
+              DTS:DTSID="{2945D21E-33E9-4920-8869-2144136F5722}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[SQL Connection]"
       DTS:CreationName="OLEDB"
@@ -53,7 +196,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="vEnd_Date">
       <DTS:VariableValue
-        DTS:DataType="7">9/17/2019 12:43:04 PM</DTS:VariableValue>
+        DTS:DataType="7">9/18/2019 4:17:47 PM</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -107,12 +250,12 @@
       DTS:CreationName=""
       DTS:DTSID="{BF1B1349-B5F6-4975-A6F9-9BA450A53BA1}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;Select Control_run_id ,Job_Run_id ,Control_Name ,Control_Message ,Control_Start_Date ,Control_End_Date ,Source_System ,Source_Count  ,Target_Count ,Update_Count ,Delete_Count ,Insert_Count ,Upsert_Count ,MisMatch_Count ,Controlled from Job_Control Where job_run_id = &quot; + (DT_STR,4,1252) @[User::vJob_Run_Id]"
+      DTS:Expression="&quot;Select Control_run_id ,Job_Run_id ,Control_Name ,Control_Message ,Control_Start_Date ,Control_End_Date ,Source_System ,Source_Count  ,Target_Count ,Update_Count ,Delete_Count ,Insert_Count ,Upsert_Count ,MisMatch_Count ,Controlled from Job_Control Where Job_run_id = &quot; + (DT_STR,4,1252) @[User::vJob_Run_Id]"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="vQry_Job_Control">
       <DTS:VariableValue
-        DTS:DataType="8">Select Control_run_id ,Job_Run_id ,Control_Name ,Control_Message ,Control_Start_Date ,Control_End_Date ,Source_System ,Source_Count  ,Target_Count ,Update_Count ,Delete_Count ,Insert_Count ,Upsert_Count ,MisMatch_Count ,Controlled from Job_Control Where job_run_id = 1</DTS:VariableValue>
+        DTS:DataType="8">Select Control_run_id ,Job_Run_id ,Control_Name ,Control_Message ,Control_Start_Date ,Control_End_Date ,Source_System ,Source_Count  ,Target_Count ,Update_Count ,Delete_Count ,Insert_Count ,Upsert_Count ,MisMatch_Count ,Controlled from Job_Control Where Job_run_id = 1</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -239,11 +382,219 @@
           version="1">
           <components>
             <component
-              refId="Package\Output Job_Control\OLE DB Source"
+              refId="Package\Output Job_Control\Flat File Destination"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Flat File Destination">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+                <property
+                  dataType="System.Boolean"
+                  description="When text qualifier is enabled, specifies whether the text qualifier in the data written to the destination file will be escaped or not."
+                  name="EscapeQualifier">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Output Job_Control\Flat File Destination.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Job_Control]"
+                  connectionManagerRefId="Package.ConnectionManagers[Job_Control]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].Columns[Control_run_id]"
+                      cachedDataType="i4"
+                      cachedName="Control_run_id"
+                      externalMetadataColumnId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Control_run_id]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Control_run_id]" />
+                    <inputColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].Columns[Job_Run_id]"
+                      cachedDataType="i4"
+                      cachedName="Job_Run_id"
+                      externalMetadataColumnId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Job_Run_id]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Job_Run_id]" />
+                    <inputColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].Columns[Control_Name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Control_Name"
+                      externalMetadataColumnId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Control_Name]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Control_Name]" />
+                    <inputColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].Columns[Control_Message]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Control_Message"
+                      externalMetadataColumnId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Control_Message]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Control_Message]" />
+                    <inputColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].Columns[Control_Start_Date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Control_Start_Date"
+                      externalMetadataColumnId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Control_Start_Date]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Control_Start_Date]" />
+                    <inputColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].Columns[Control_End_Date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Control_End_Date"
+                      externalMetadataColumnId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Control_End_Date]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Control_End_Date]" />
+                    <inputColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].Columns[Source_System]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Source_System"
+                      externalMetadataColumnId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Source_System]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Source_System]" />
+                    <inputColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].Columns[Source_Count]"
+                      cachedDataType="i4"
+                      cachedName="Source_Count"
+                      externalMetadataColumnId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Source_Count]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Source_Count]" />
+                    <inputColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].Columns[Target_Count]"
+                      cachedDataType="i4"
+                      cachedName="Target_Count"
+                      externalMetadataColumnId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Target_Count]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Target_Count]" />
+                    <inputColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].Columns[Update_Count]"
+                      cachedDataType="i4"
+                      cachedName="Update_Count"
+                      externalMetadataColumnId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Update_Count]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Update_Count]" />
+                    <inputColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].Columns[Delete_Count]"
+                      cachedDataType="i4"
+                      cachedName="Delete_Count"
+                      externalMetadataColumnId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Delete_Count]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Delete_Count]" />
+                    <inputColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].Columns[Insert_Count]"
+                      cachedDataType="i4"
+                      cachedName="Insert_Count"
+                      externalMetadataColumnId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Insert_Count]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Insert_Count]" />
+                    <inputColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].Columns[Upsert_Count]"
+                      cachedDataType="i4"
+                      cachedName="Upsert_Count"
+                      externalMetadataColumnId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Upsert_Count]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Upsert_Count]" />
+                    <inputColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].Columns[MisMatch_Count]"
+                      cachedDataType="i4"
+                      cachedName="MisMatch_Count"
+                      externalMetadataColumnId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[MisMatch_Count]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[MisMatch_Count]" />
+                    <inputColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].Columns[Controlled]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Controlled"
+                      externalMetadataColumnId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Controlled]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Controlled]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Control_run_id]"
+                      dataType="i4"
+                      name="Control_run_id" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Job_Run_id]"
+                      dataType="i4"
+                      name="Job_Run_id" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Control_Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Control_Name" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Control_Message]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Control_Message" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Control_Start_Date]"
+                      dataType="dbTimeStamp"
+                      name="Control_Start_Date" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Control_End_Date]"
+                      dataType="dbTimeStamp"
+                      name="Control_End_Date" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Source_System]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Source_System" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Source_Count]"
+                      dataType="i4"
+                      name="Source_Count" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Target_Count]"
+                      dataType="i4"
+                      name="Target_Count" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Update_Count]"
+                      dataType="i4"
+                      name="Update_Count" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Delete_Count]"
+                      dataType="i4"
+                      name="Delete_Count" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Insert_Count]"
+                      dataType="i4"
+                      name="Insert_Count" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Upsert_Count]"
+                      dataType="i4"
+                      name="Upsert_Count" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[MisMatch_Count]"
+                      dataType="i4"
+                      name="MisMatch_Count" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Controlled]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Controlled" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Output Job_Control\Job_Control"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
               description="OLE DB Source"
-              name="OLE DB Source"
+              name="Job_Control"
               usesDispositions="true"
               version="7">
               <properties>
@@ -258,7 +609,7 @@
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
+                  name="OpenRowsetVariable">User::vQry_Job_Control</property>
                 <property
                   dataType="System.String"
                   description="The SQL command to be executed."
@@ -267,7 +618,7 @@
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
-                  name="SqlCommandVariable"></property>
+                  name="SqlCommandVariable">User::vQry_Job_Control</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -280,7 +631,7 @@
                   dataType="System.Int32"
                   description="Specifies the mode used to access the database."
                   name="AccessMode"
-                  typeConverter="AccessMode">0</property>
+                  typeConverter="AccessMode">3</property>
                 <property
                   dataType="System.String"
                   description="The mappings between the parameters in the SQL command and variables."
@@ -288,32 +639,331 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Output Job_Control\OLE DB Source.Connections[OleDbConnection]"
+                  refId="Package\Output Job_Control\Job_Control.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SQL Connection]"
+                  connectionManagerRefId="Package.ConnectionManagers[SQL Connection]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
               <outputs>
                 <output
-                  refId="Package\Output Job_Control\OLE DB Source.Outputs[OLE DB Source Output]"
+                  refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output]"
                   name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Control_run_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Control_run_id]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Control_run_id]"
+                      name="Control_run_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Job_Run_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Job_Run_id]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Job_Run_id]"
+                      name="Job_Run_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Control_Name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Control_Name]"
+                      length="100"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Control_Name]"
+                      name="Control_Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Control_Message]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Control_Message]"
+                      length="100"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Control_Message]"
+                      name="Control_Message"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Control_Start_Date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Control_Start_Date]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Control_Start_Date]"
+                      name="Control_Start_Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Control_End_Date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Control_End_Date]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Control_End_Date]"
+                      name="Control_End_Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Source_System]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Source_System]"
+                      length="100"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Source_System]"
+                      name="Source_System"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Source_Count]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Source_Count]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Source_Count]"
+                      name="Source_Count"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Target_Count]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Target_Count]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Target_Count]"
+                      name="Target_Count"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Update_Count]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Update_Count]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Update_Count]"
+                      name="Update_Count"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Delete_Count]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Delete_Count]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Delete_Count]"
+                      name="Delete_Count"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Insert_Count]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Insert_Count]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Insert_Count]"
+                      name="Insert_Count"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Upsert_Count]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Upsert_Count]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Upsert_Count]"
+                      name="Upsert_Count"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[MisMatch_Count]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[MisMatch_Count]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[MisMatch_Count]"
+                      name="MisMatch_Count"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Controlled]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Controlled]"
+                      length="1"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].Columns[Controlled]"
+                      name="Controlled"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
                   <externalMetadataColumns
-                    isUsed="True" />
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Control_run_id]"
+                      dataType="i4"
+                      name="Control_run_id" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Job_Run_id]"
+                      dataType="i4"
+                      name="Job_Run_id" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Control_Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Control_Name" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Control_Message]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Control_Message" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Control_Start_Date]"
+                      dataType="dbTimeStamp"
+                      name="Control_Start_Date" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Control_End_Date]"
+                      dataType="dbTimeStamp"
+                      name="Control_End_Date" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Source_System]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Source_System" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Source_Count]"
+                      dataType="i4"
+                      name="Source_Count" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Target_Count]"
+                      dataType="i4"
+                      name="Target_Count" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Update_Count]"
+                      dataType="i4"
+                      name="Update_Count" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Delete_Count]"
+                      dataType="i4"
+                      name="Delete_Count" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Insert_Count]"
+                      dataType="i4"
+                      name="Insert_Count" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Upsert_Count]"
+                      dataType="i4"
+                      name="Upsert_Count" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[MisMatch_Count]"
+                      dataType="i4"
+                      name="MisMatch_Count" />
+                    <externalMetadataColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output].ExternalColumns[Controlled]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Controlled" />
+                  </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Output Job_Control\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output]"
                   isErrorOut="true"
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Output Job_Control\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Control_run_id]"
                       dataType="i4"
-                      lineageId="Package\Output Job_Control\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Control_run_id]"
+                      name="Control_run_id" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Job_Run_id]"
+                      dataType="i4"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Job_Run_id]"
+                      name="Job_Run_id" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Control_Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Control_Name]"
+                      name="Control_Name" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Control_Message]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Control_Message]"
+                      name="Control_Message" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Control_Start_Date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Control_Start_Date]"
+                      name="Control_Start_Date" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Control_End_Date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Control_End_Date]"
+                      name="Control_End_Date" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Source_System]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Source_System]"
+                      name="Source_System" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Source_Count]"
+                      dataType="i4"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Source_Count]"
+                      name="Source_Count" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Target_Count]"
+                      dataType="i4"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Target_Count]"
+                      name="Target_Count" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Update_Count]"
+                      dataType="i4"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Update_Count]"
+                      name="Update_Count" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Delete_Count]"
+                      dataType="i4"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Delete_Count]"
+                      name="Delete_Count" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Insert_Count]"
+                      dataType="i4"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Insert_Count]"
+                      name="Insert_Count" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Upsert_Count]"
+                      dataType="i4"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Upsert_Count]"
+                      name="Upsert_Count" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[MisMatch_Count]"
+                      dataType="i4"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[MisMatch_Count]"
+                      name="MisMatch_Count" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Controlled]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[Controlled]"
+                      name="Controlled" />
+                    <outputColumn
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Output Job_Control\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Output Job_Control\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -322,8 +972,351 @@
               </outputs>
             </component>
           </components>
+          <paths>
+            <path
+              refId="Package\Output Job_Control.Paths[OLE DB Source Output]"
+              endId="Package\Output Job_Control\Flat File Destination.Inputs[Flat File Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Output Job_Control\Job_Control.Outputs[OLE DB Source Output]" />
+          </paths>
         </pipeline>
       </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Post Job on Success"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{F0083879-FC39-4052-91D7-DA12EAF3E9EE}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Post Job on Success">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{03DE31CD-701B-46CE-B48C-519515EB0F09}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="User"
+          DTS:ObjectName="Job_Error_Description">
+          <DTS:VariableValue
+            DTS:DataSubType="ManagedSerializable"
+            DTS:DataType="13">
+            <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+              <SOAP-ENV:Body>
+                <xsd:anyType
+                  id="ref-1"></xsd:anyType>
+              </SOAP-ENV:Body>
+            </SOAP-ENV:Envelope>
+          </DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{B59A593B-7AD6-42D5-A9E0-9641C9D7E8E5}"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="Job_Error_Description_Record">
+          <DTS:VariableValue
+            DTS:DataType="8"
+            xml:space="preserve"></DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{AABF74B5-C7CA-41DE-A61C-50137D4BB30A}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="User"
+          DTS:ObjectName="Job_Run_Description">
+          <DTS:VariableValue
+            DTS:DataSubType="ManagedSerializable"
+            DTS:DataType="13">
+            <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+              <SOAP-ENV:Body>
+                <xsd:anyType
+                  id="ref-1"></xsd:anyType>
+              </SOAP-ENV:Body>
+            </SOAP-ENV:Envelope>
+          </DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{950403BD-2B8D-4334-A650-B39E7688CBEE}"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="Job_Run_Description_Record">
+          <DTS:VariableValue
+            DTS:DataType="8"
+            xml:space="preserve"></DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Post Job on Success\Get Duration"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{EEF917A7-B2E7-4569-B4CE-531D723B340D}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Get Duration"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::vRun_Time] = (DT_WSTR , 5) (DATEDIFF(&quot;s&quot;, @[User::vStart_Date], @[User::vEnd_Date] ) /3600 ) + &quot;:&quot;+&#xA;(DT_WSTR, 5) (DATEDIFF(&quot;s&quot;, @[User::vStart_Date], @[User::vEnd_Date] ) % 3600/60 ) + &quot;:&quot; +&#xA;(DT_WSTR, 5) (DATEDIFF(&quot;s&quot;, @[User::vStart_Date], @[User::vEnd_Date] ) % 60 )" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Post Job on Success\Get errors for this job"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{1878DB2D-2C95-4288-B095-629870C4FA50}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Get errors for this job"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{8EF6C6E4-4250-4BF6-8130-1F03D0FFEB6D}"
+              SQLTask:SqlStatementSource="Select package_name + ' : '+error_description errordesc from&#xA;Job_Error_Handling where job_run_id = ?"
+              SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::Job_Error_Description" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::vJob_Run_Id"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Post Job on Success\Get run results for this job"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{74EBBA1E-2BEF-419C-BD67-D9CE6AB7CD9A}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Get run results for this job"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{8EF6C6E4-4250-4BF6-8130-1F03D0FFEB6D}"
+              SQLTask:SqlStatementSource="Select 'control : '+control_name + ' - '+control_message runresult from job_control where job_run_id = ? order by control_message"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::Job_Run_Description" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::vJob_Run_Id"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Post Job on Success\Getting End date"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{106d1013-c588-4356-8318-7ec2a1d15d12}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Getting End date"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::vEnd_Date] = Getdate()" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Post Job on Success\Process each error message"
+          DTS:CreationName="STOCK:FOREACHLOOP"
+          DTS:Description="Foreach Loop Container"
+          DTS:DTSID="{5E4ABC06-01E3-4A38-ACAF-619C6B67B028}"
+          DTS:ExecutableType="STOCK:FOREACHLOOP"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Process each error message">
+          <DTS:ForEachEnumerator
+            DTS:CreationName="Microsoft.ForEachADOEnumerator"
+            DTS:DTSID="{CA6CDA30-25E0-4D8F-9DA9-B0D90958FC59}"
+            DTS:ObjectName="{CA6CDA30-25E0-4D8F-9DA9-B0D90958FC59}">
+            <DTS:ObjectData>
+              <FEEADO
+                EnumType="EnumerateRowsInFirstTable"
+                VarName="User::Job_Error_Description" />
+            </DTS:ObjectData>
+          </DTS:ForEachEnumerator>
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Post Job on Success\Process each error message\Concatenate errors"
+              DTS:CreationName="Microsoft.ExpressionTask"
+              DTS:Description="Expression Task"
+              DTS:DTSID="{7ea31117-8ad5-4782-b41e-5b62a23147d2}"
+              DTS:ExecutableType="Microsoft.ExpressionTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Concatenate errors"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExpressionTask
+                  Expression="@[User::vMailJobErrorsMsg] =  @[User::vMailJobErrorsMsg] + &quot;\n&quot; + &quot;\n&quot; +  @[User::Job_Error_Description_Record]" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:ForEachVariableMappings>
+            <DTS:ForEachVariableMapping
+              DTS:CreationName=""
+              DTS:DTSID="{F1944993-E340-4380-9B11-639CB2877F63}"
+              DTS:ObjectName="{F1944993-E340-4380-9B11-639CB2877F63}"
+              DTS:ValueIndex="0"
+              DTS:VariableName="User::Job_Run_Description_Record" />
+          </DTS:ForEachVariableMappings>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Post Job on Success\Process each run result"
+          DTS:CreationName="STOCK:FOREACHLOOP"
+          DTS:Description="Foreach Loop Container"
+          DTS:DTSID="{53606154-93D5-4DBE-A212-FCE0A7472266}"
+          DTS:ExecutableType="STOCK:FOREACHLOOP"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Process each run result">
+          <DTS:ForEachEnumerator
+            DTS:CreationName="Microsoft.ForEachADOEnumerator"
+            DTS:DTSID="{7DD79A7C-853F-4911-B5AC-C2D715B1D356}"
+            DTS:ObjectName="{7DD79A7C-853F-4911-B5AC-C2D715B1D356}">
+            <DTS:ObjectData>
+              <FEEADO
+                EnumType="EnumerateRowsInFirstTable"
+                VarName="User::Job_Run_Description" />
+            </DTS:ObjectData>
+          </DTS:ForEachEnumerator>
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Post Job on Success\Process each run result\Concatenate results"
+              DTS:CreationName="Microsoft.ExpressionTask"
+              DTS:Description="Expression Task"
+              DTS:DTSID="{01BB59A7-A50A-42F8-B91C-8F4A19B9927B}"
+              DTS:ExecutableType="Microsoft.ExpressionTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Concatenate results"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExpressionTask
+                  Expression="@[User::vMailJobRunResultsMsg] =  @[User::vMailJobRunResultsMsg] + &quot;\n\n&quot; +  @[User::Job_Run_Description_Record]" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:ForEachVariableMappings>
+            <DTS:ForEachVariableMapping
+              DTS:CreationName=""
+              DTS:DTSID="{B8CFA051-189E-404A-BF20-35E1900F90E1}"
+              DTS:ObjectName="{B8CFA051-189E-404A-BF20-35E1900F90E1}"
+              DTS:ValueIndex="0"
+              DTS:VariableName="User::Job_Run_Description_Record" />
+          </DTS:ForEachVariableMappings>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Post Job on Success\Update Job Run"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{111DE5AF-D692-4486-BB96-1423F0613A81}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Job Run"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{8EF6C6E4-4250-4BF6-8130-1F03D0FFEB6D}"
+              SQLTask:SqlStatementSource="Update dbo.Job_Run&#xA;SET &#xA;Job_Message = ?,&#xA;Job_End_Date  = ?,&#xA;Job_Run_Time = ?&#xA;Where Job_run_id = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::vMessage"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::vEnd_Date"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::vJob_Run_Id"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::vRun_Time"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Post Job on Success.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{9B93DE72-3CB1-4C62-97B4-BC082A2C9DD4}"
+          DTS:From="Package\Post Job on Success\Getting End date"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Post Job on Success\Get Duration" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Post Job on Success.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{2FC6FAF7-EE29-4D3F-9C47-63262BF333D3}"
+          DTS:From="Package\Post Job on Success\Get Duration"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Post Job on Success\Update Job Run" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Post Job on Success.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{0AF2E44F-DFF6-4A66-AECD-41419D272188}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::vCount] !=0"
+          DTS:From="Package\Post Job on Success\Update Job Run"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Post Job on Success\Get run results for this job" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Post Job on Success.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{B3D1E8C9-5E4D-45FF-88DE-3A8252E227BE}"
+          DTS:From="Package\Post Job on Success\Get run results for this job"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Post Job on Success\Process each run result" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Post Job on Success.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{A94B25BB-4951-4096-B19C-F17D573DDB4F}"
+          DTS:From="Package\Post Job on Success\Process each run result"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\Post Job on Success\Get errors for this job" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Post Job on Success.PrecedenceConstraints[Constraint 5]"
+          DTS:CreationName=""
+          DTS:DTSID="{0F26529B-CCE0-4B73-9C90-D3BFC172A4C8}"
+          DTS:From="Package\Post Job on Success\Get errors for this job"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 5"
+          DTS:To="Package\Post Job on Success\Process each error message" />
+      </DTS:PrecedenceConstraints>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Pre Job"
@@ -426,6 +1419,21 @@
           DTS:To="Package\Pre Job\Getting Job Run ID" />
       </DTS:PrecedenceConstraints>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Set Message"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{E47769A1-BB15-46FF-B52A-7FCF6EAFE094}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Set Message"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::vMessage] =  @[User::vCount] &gt; 0 ? &quot;Failed&quot; : &quot;Success&quot;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
@@ -456,6 +1464,24 @@
       DTS:ObjectName="Constraint 2"
       DTS:To="Package\Output Job_Control"
       DTS:Value="2" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{4157D84E-357C-4B23-9C70-2D3D95BDB6F3}"
+      DTS:From="Package\Getting Count of Fail Jobs"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Set Message"
+      DTS:Value="2" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{ABA66110-4779-4D21-B56C-FBEF9DAC1171}"
+      DTS:From="Package\Set Message"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Post Job on Success"
+      DTS:Value="2" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -468,7 +1494,7 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="169.333333333334,42.6666666666667"
           Id="Package\Pre Job\Getting Job Run ID"
@@ -531,7 +1557,7 @@
           PanelSize="283.333333333334,286.666666666667"
           Size="283.333333333334,329.333333333334"
           Id="Package\Pre Job"
-          TopLeft="634.999991431832,20.1333340462049" />
+          TopLeft="634.999991431832,45.2666669301192" />
         <NodeLayout
           Size="133.333333333334,42.6666666666667"
           Id="Package\Main Job\Child_DWH"
@@ -542,10 +1568,10 @@
           PanelSize="282.666666666667,128.666666666667"
           Size="282.666666666667,172"
           Id="Package\Main Job"
-          TopLeft="632.083323914558,396.71665957282" />
+          TopLeft="632.083323914558,421.849992456734" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="775.041657673195,349.466667379538">
+          TopLeft="775.041657673195,374.600000263452">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -568,10 +1594,10 @@
         <NodeLayout
           Size="200.666666666667,42.6666666666667"
           Id="Package\Getting Count of Fail Jobs"
-          TopLeft="674.999989941717,637.866655260722" />
+          TopLeft="674.999989941717,662.999988144636" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="774.37499026147,568.71665957282">
+          TopLeft="774.37499026147,593.849992456734">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -596,40 +1622,311 @@
         <NodeLayout
           Size="170.666666666667,42.6666666666667"
           Id="Package\Output Job_Control"
-          TopLeft="966.666652262211,719.333320470651" />
+          TopLeft="956.666652411223,745.333320005735" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="775.33332327505,680.533321927389">
+          TopLeft="775.33332327505,705.666654811303">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="276.666662320494,38.7999985432624"
+              EndConnector="266.666662469506,39.6666651944319"
               Start="0,0"
-              End="276.666662320494,31.2999985432624">
+              End="266.666662469506,32.1666651944319">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,15.3999992716312" />
+                    End="0,15.8333325972159" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,15.3999992716312"
-                    Point2="0,19.3999992716312"
-                    Point3="4,19.3999992716312" />
+                    Point1="0,15.8333325972159"
+                    Point2="0,19.8333325972159"
+                    Point3="4,19.8333325972159" />
                   <mssgle:LineSegment
-                    End="272.666662320494,19.3999992716312" />
+                    End="262.666662469506,19.8333325972159" />
                   <mssgle:CubicBezierSegment
-                    Point1="272.666662320494,19.3999992716312"
-                    Point2="276.666662320494,19.3999992716312"
-                    Point3="276.666662320494,23.3999992716312" />
+                    Point1="262.666662469506,19.8333325972159"
+                    Point2="266.666662469506,19.8333325972159"
+                    Point3="266.666662469506,23.8333325972159" />
                   <mssgle:LineSegment
-                    End="276.666662320494,31.2999985432624" />
+                    End="266.666662469506,32.1666651944319" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="104.367745222747,24.3999992716312,67.931171875,16"
+              BoundingBox="99.367745297253,24.8333325972159,67.931171875,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="138,42.6666666666667"
+          Id="Package\Set Message"
+          TopLeft="409.166660569608,751.333321400483" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="743.222212163939,705.666654811303">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-265.055551594331,45.6666665891804"
+              Start="0,0"
+              End="-265.055551594331,38.1666665891804">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.4834102081455" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.4834102081455"
+                    Point2="0,18.4834102081455"
+                    Point3="-4,18.4834102081455" />
+                  <mssgle:LineSegment
+                    End="-261.055551594331,18.4834102081455" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-261.055551594331,18.4834102081455"
+                    Point2="-265.055551594331,18.4834102081455"
+                    Point3="-265.055551594331,22.4834102081455" />
+                  <mssgle:LineSegment
+                    End="-265.055551594331,38.1666665891804" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-157.832228922165,23.4834102081455,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="158.666666666667,42.6666666666667"
+          Id="Package\Post Job on Success\Getting End date"
+          TopLeft="67.6388887750606,21.7222229066825" />
+        <NodeLayout
+          Size="140,42.6666666666667"
+          Id="Package\Post Job on Success\Get Duration"
+          TopLeft="72.0555508713481,100.925917548824" />
+        <EdgeLayout
+          Id="Package\Post Job on Success.PrecedenceConstraints[Constraint]"
+          TopLeft="144.513886489871,64.3888895733492">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.5370279754752"
+              Start="0,0"
+              End="0,29.0370279754752">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.0370279754752" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="154.666666666667,42.6666666666667"
+          Id="Package\Post Job on Success\Update Job Run"
+          TopLeft="70.222217972632,171.518509659282" />
+        <EdgeLayout
+          Id="Package\Post Job on Success.PrecedenceConstraints[Constraint 1]"
+          TopLeft="144.805551088657,143.592584215491">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27.9259254437909"
+              Start="0,0"
+              End="0,20.4259254437909">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.4259254437909" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="204,42.6666666666667"
+          Id="Package\Post Job on Success\Get run results for this job"
+          TopLeft="47.0740701694183,247.888879909118" />
+        <EdgeLayout
+          Id="Package\Post Job on Success.PrecedenceConstraints[Constraint 2]"
+          TopLeft="148.314810737692,214.185176325949">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33.7037035831698"
+              Start="0,0"
+              End="0,26.2037035831698">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.2037035831698" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,5.10185179158489,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="172,42.6666666666667"
+          Id="Package\Post Job on Success\Process each run result\Concatenate results"
+          TopLeft="55.3518485887735,19.0370287029832" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="284,119.333333333334"
+          Size="284,162.666666666667"
+          Id="Package\Post Job on Success\Process each run result"
+          TopLeft="27.0740719078869,342.148138849824" />
+        <EdgeLayout
+          Id="Package\Post Job on Success.PrecedenceConstraints[Constraint 3]"
+          TopLeft="149.074070169418,290.555546575785">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="20.0000017384687,51.592592274039"
+              Start="0,0"
+              End="20.0000017384687,44.092592274039">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.7962961370195" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.7962961370195"
+                    Point2="0,25.7962961370195"
+                    Point3="4,25.7962961370195" />
+                  <mssgle:LineSegment
+                    End="16.0000017384687,25.7962961370195" />
+                  <mssgle:CubicBezierSegment
+                    Point1="16.0000017384687,25.7962961370195"
+                    Point2="20.0000017384687,25.7962961370195"
+                    Point3="20.0000017384687,29.7962961370195" />
+                  <mssgle:LineSegment
+                    End="20.0000017384687,44.092592274039" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="181.333333333334,42.6666666666667"
+          Id="Package\Post Job on Success\Get errors for this job"
+          TopLeft="86.3333302841144,539.99999023676" />
+        <EdgeLayout
+          Id="Package\Post Job on Success.PrecedenceConstraints[Constraint 4]"
+          TopLeft="173.037034429334,504.814805516491">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35.1851847202689"
+              Start="0,0"
+              End="0,27.6851847202689">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.6851847202689" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="169.333333333334,42.6666666666667"
+          Id="Package\Post Job on Success\Process each error message\Concatenate errors"
+          TopLeft="31.2962967240148,28.2222227904531" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="237.333333333334,157.333333333334"
+          Size="237.333333333334,200.666666666667"
+          Id="Package\Post Job on Success\Process each error message"
+          TopLeft="58.0925899641934,629.51850833341" />
+        <EdgeLayout
+          Id="Package\Post Job on Success.PrecedenceConstraints[Constraint 5]"
+          TopLeft="176.879626790821,582.666656903426">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46.8518514299834"
+              Start="0,0"
+              End="0,39.3518514299834">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.3518514299834" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="360.666666666667,898"
+          Size="360.666666666667,941.333333333334"
+          Id="Package\Post Job on Success"
+          TopLeft="328.981476579276,870.177766485479" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="478.166660569608,793.99998806715">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="31.148149343001,76.1777784183295"
+              Start="0,0"
+              End="31.148149343001,68.6777784183295">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.0888892091647" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34.0888892091647"
+                    Point2="0,38.0888892091647"
+                    Point3="4,38.0888892091647" />
+                  <mssgle:LineSegment
+                    End="27.148149343001,38.0888892091647" />
+                  <mssgle:CubicBezierSegment
+                    Point1="27.148149343001,38.0888892091647"
+                    Point2="31.148149343001,38.0888892091647"
+                    Point3="31.148149343001,42.0888892091647" />
+                  <mssgle:LineSegment
+                    End="31.148149343001,68.6777784183295" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-9.73037845349949,43.0888892091647,50.60890625,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -640,13 +1937,47 @@
     design-time-name="Package\Output Job_Control">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="150.666666666667,42.6666666666667"
-          Id="Package\Output Job_Control\OLE DB Source"
-          TopLeft="321.249995213002,83.1999985122681" />
+          Size="136,42.6666666666667"
+          Id="Package\Output Job_Control\Job_Control"
+          TopLeft="319.999995231629,35.9666660235326" />
+        <NodeLayout
+          Size="172,42.6666666666667"
+          Id="Package\Output Job_Control\Flat File Destination"
+          TopLeft="302.499995492399,182.866663396756" />
+        <EdgeLayout
+          Id="Package\Output Job_Control.Paths[OLE DB Source Output]"
+          TopLeft="388.249995362014,78.6333326901992">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,104.233330706557"
+              Start="0,0"
+              End="0,96.7333307065567">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,96.7333307065567" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Output Job_Control\Job_Control">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
