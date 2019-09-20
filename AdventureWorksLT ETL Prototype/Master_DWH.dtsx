@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Master_DWH"
   DTS:PackageType="5"
-  DTS:VersionBuild="22"
-  DTS:VersionGUID="{1EA3FCD0-42EA-4648-B119-3AB84D43E098}">
+  DTS:VersionBuild="32"
+  DTS:VersionGUID="{336592C0-680C-4CC2-8D4A-62C1D4841956}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -21,6 +21,8 @@
       DTS:CreationName="FLATFILE"
       DTS:DTSID="{FA7EF9E8-00A8-49B6-B693-516FE1FEC73B}"
       DTS:ObjectName="Job_Control">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::File_Path] + "Failure_" +  @[System::PackageName] + ".csv "</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:Format="Delimited"
@@ -29,7 +31,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="C:\logs\Source AdventureWork.csv">
+          DTS:ConnectionString="C:\Logs\Data\Failure_Master_DWH.csv ">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -160,13 +162,25 @@
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{B6CEF6FA-4C2C-4475-AF44-3B46A31E6CDD}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=smtp.gmail.com;UseWindowsAuthentication=False;EnableSsl=True;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[SQL Connection]"
       DTS:CreationName="OLEDB"
       DTS:DTSID="{8EF6C6E4-4250-4BF6-8130-1F03D0FFEB6D}"
       DTS:ObjectName="SQL Connection">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::SQL_ConnectionString]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=LVAGPLTP3455;Initial Catalog=SSISDB;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=LVAGPLTP3455;Initial Catalog=SSISDB;Provider=SQLNCLI11.1;Integrated Security=SSPI;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -1050,6 +1064,47 @@
       </DTS:Variables>
       <DTS:Executables>
         <DTS:Executable
+          DTS:refId="Package\Post Job on Success\Create Incident"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{a4d6cd2c-4cce-4d13-ad4f-31797cb9b534}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create Incident"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="FromLine">@[$Project::IncidentEmailFrom]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::vMessageMail]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[$Project::IncidentEmailSub]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[$Project::IncidentEmailTo]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{B6CEF6FA-4C2C-4475-AF44-3B46A31E6CDD}"
+              SendMailTask:From="welcomeman90@gmail.com"
+              SendMailTask:To="orxanbabashov@gmail.com"
+              SendMailTask:Subject="P1:BI DWH Support, P2:BATCH-ODS, P3:High ,P4: High, P5: Production Controls Issue" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Post Job on Success\Create Mail Message"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{B1BBEF60-291A-45D1-8367-A5E550465A45}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create Mail Message"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::vMessageMail] = (DT_WSTR , 3) @[User::vCount] + &quot; &quot; + @[User::vTemp_Mess] + &quot;\n&quot; + &quot;\n&quot; + &quot;Job Control: &quot; + @[User::vMailJobRunResultsMsg] + &quot;\n&quot; + &quot;\n&quot; + &quot;Job Error Handling :&quot; +  @[User::vMailJobErrorsMsg]" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
           DTS:refId="Package\Post Job on Success\Get Duration"
           DTS:CreationName="Microsoft.ExpressionTask"
           DTS:Description="Expression Task"
@@ -1113,7 +1168,7 @@
                 SQLTask:ParameterName="0"
                 SQLTask:DtsVariableName="User::vJob_Run_Id"
                 SQLTask:ParameterDirection="Input"
-                SQLTask:DataType="131"
+                SQLTask:DataType="3"
                 SQLTask:ParameterSize="-1" />
             </SQLTask:SqlTaskData>
           </DTS:ObjectData>
@@ -1131,6 +1186,32 @@
           <DTS:ObjectData>
             <ExpressionTask
               Expression="@[User::vEnd_Date] = Getdate()" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Post Job on Success\Notify Support"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{6E1960D4-814C-47A7-BA19-D0A8D4E48C76}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Notify Support"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="FromLine">@[$Project::SupportEmailto]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[User::vMessageMail]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[$Project::SupportEmailSub]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[$Project::SupportEmailto]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{B6CEF6FA-4C2C-4475-AF44-3B46A31E6CDD}"
+              SendMailTask:From="orxanbabashov@gmail.com"
+              SendMailTask:To="orxanbabashov@gmail.com"
+              SendMailTask:Subject="Control issue - OLTP to DWH Controls Breach -Please Investigate" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -1316,6 +1397,30 @@
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 5"
           DTS:To="Package\Post Job on Success\Process each error message" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Post Job on Success.PrecedenceConstraints[Constraint 6]"
+          DTS:CreationName=""
+          DTS:DTSID="{965FB51B-E68B-4E1B-BF86-EE2F90CBAB2E}"
+          DTS:From="Package\Post Job on Success\Process each error message"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 6"
+          DTS:To="Package\Post Job on Success\Create Mail Message" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Post Job on Success.PrecedenceConstraints[Constraint 7]"
+          DTS:CreationName=""
+          DTS:DTSID="{7D9F0042-BB3A-48FE-AFA5-4B47C03E553D}"
+          DTS:From="Package\Post Job on Success\Create Mail Message"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 7"
+          DTS:To="Package\Post Job on Success\Notify Support" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Post Job on Success.PrecedenceConstraints[Constraint 8]"
+          DTS:CreationName=""
+          DTS:DTSID="{9AA38C30-C46A-44AC-A493-930084BBB737}"
+          DTS:From="Package\Post Job on Success\Notify Support"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 8"
+          DTS:To="Package\Post Job on Success\Create Incident" />
       </DTS:PrecedenceConstraints>
     </DTS:Executable>
     <DTS:Executable
@@ -1483,6 +1588,109 @@
       DTS:To="Package\Post Job on Success"
       DTS:Value="2" />
   </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{DAE7B822-E7AD-4C19-9376-66F408283675}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{DDB1049B-80DD-4FDF-825B-08F83B5FFDCB}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\For Loop Send One Email Only"
+          DTS:AssignExpression="@Error_Email_Sent=1"
+          DTS:CreationName="STOCK:FORLOOP"
+          DTS:Description="For Loop Container"
+          DTS:DTSID="{5A1A27B6-9FCA-448E-9E81-D75595875C95}"
+          DTS:EvalExpression="@Error_Email_Sent==0"
+          DTS:ExecutableType="STOCK:FORLOOP"
+          DTS:LocaleID="-1"
+          DTS:MaxConcurrent="1"
+          DTS:ObjectName="For Loop Send One Email Only">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\For Loop Send One Email Only\Create Incident-Send Failure Email"
+              DTS:CreationName="Microsoft.SendMailTask"
+              DTS:Description="Send Mail Task"
+              DTS:DTSID="{1adafa92-217b-42a8-b2e8-5097f8e721bc}"
+              DTS:ExecutableType="Microsoft.SendMailTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Create Incident-Send Failure Email">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="FromLine">@[$Project::IncidentEmailFrom]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="MessageSource">" The Source to DWH load (SSIS Job SRC_DWH_"</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="Subject">@[$Project::IncidentEmailSub]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="ToLine">@[$Project::IncidentEmailTo]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SendMailTask:SendMailTaskData
+                  SendMailTask:SMTPServer="{B6CEF6FA-4C2C-4475-AF44-3B46A31E6CDD}"
+                  SendMailTask:From="welcomeman90@gmail.com"
+                  SendMailTask:To="orxanbabashov@gmail.com"
+                  SendMailTask:Subject="P1:BI DWH Support, P2:BATCH-ODS, P3:High ,P4: High, P5: Production Controls Issue"
+                  SendMailTask:MessageSource=" The Source to DWH load (SSIS Job SRC_DWH_" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package.EventHandlers[OnError]\For Loop Send One Email Only\Send Failure Email to Support"
+              DTS:CreationName="Microsoft.SendMailTask"
+              DTS:Description="Send Mail Task"
+              DTS:DTSID="{d10092bf-798e-47c4-a440-c025f7dfcbce}"
+              DTS:ExecutableType="Microsoft.SendMailTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Send Failure Email to Support">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="FromLine">@[$Project::SupportEmailFrom]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="MessageSource">"The Source to DWH Load (SSIS Job_SRC_DWH.CMD)  has failed. Please, investigate -Check SSIS  Server log tables.
+" + "\n\n" + "Error Description : " +  @[System::ErrorDescription]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="Subject">" The Source to DWH  job(SRC_DWH.CMD) has failed."</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="ToLine">@[$Project::SupportEmailto]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SendMailTask:SendMailTaskData
+                  SendMailTask:SMTPServer="{B6CEF6FA-4C2C-4475-AF44-3B46A31E6CDD}"
+                  SendMailTask:From="noreply@gmail.com"
+                  SendMailTask:To="orxanbabashov@gmail.com"
+                  SendMailTask:Subject="The Source to DWH  job(SRC_DWH.CMD) has failed."
+                  SendMailTask:MessageSource="The Source to DWH Load (SSIS Job_SRC_DWH.CMD)  has failed. Please, investigate -Check SSIS  Server log tables.&#xA;&#xA;&#xA;Error Description : " xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package.EventHandlers[OnError]\For Loop Send One Email Only.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{D5CBB01C-5551-45B0-9AA9-180B2CC56514}"
+              DTS:From="Package.EventHandlers[OnError]\For Loop Send One Email Only\Send Failure Email to Support"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package.EventHandlers[OnError]\For Loop Send One Email Only\Create Incident-Send Failure Email"
+              DTS:Value="2" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -1494,7 +1702,323 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="200.666666666667,42.6666666666667"
+          Id="Package\Getting Count of Fail Jobs"
+          TopLeft="674.999989941717,662.999988144636" />
+        <NodeLayout
+          Size="133.333333333334,42.6666666666667"
+          Id="Package\Main Job\Child_DWH"
+          TopLeft="72.874993837749,31.333324499925" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="282.666666666667,129.333333333334"
+          Size="282.666666666667,172"
+          Id="Package\Main Job"
+          TopLeft="632.083323914558,421.849992456734" />
+        <NodeLayout
+          Size="170.666666666667,42.6666666666667"
+          Id="Package\Output Job_Control"
+          TopLeft="956.666652411223,745.333320005735" />
+        <NodeLayout
+          Size="152,42.6666666666667"
+          Id="Package\Post Job on Success\Create Incident"
+          TopLeft="100.592589308818,1042.37035709443" />
+        <NodeLayout
+          Size="176,42.6666666666667"
+          Id="Package\Post Job on Success\Create Mail Message"
+          TopLeft="91.4259228008212,882.222213147746" />
+        <NodeLayout
+          Size="140,42.6666666666667"
+          Id="Package\Post Job on Success\Get Duration"
+          TopLeft="72.0555508713481,100.925917548824" />
+        <NodeLayout
+          Size="181.333333333334,42.6666666666667"
+          Id="Package\Post Job on Success\Get errors for this job"
+          TopLeft="75.9166637726682,542.166656864683" />
+        <NodeLayout
+          Size="204,42.6666666666667"
+          Id="Package\Post Job on Success\Get run results for this job"
+          TopLeft="59.1111070270895,251.740731692094" />
+        <NodeLayout
+          Size="158.666666666667,42.6666666666667"
+          Id="Package\Post Job on Success\Getting End date"
+          TopLeft="67.6388887750606,21.7222229066825" />
+        <NodeLayout
+          Size="148,42.6666666666667"
+          Id="Package\Post Job on Success\Notify Support"
+          TopLeft="102.999996702428,953.740731605998" />
+        <NodeLayout
+          Size="169.333333333334,42.6666666666667"
+          Id="Package\Post Job on Success\Process each error message\Concatenate errors"
+          TopLeft="31.2962967240148,28.2222227904531" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="237.333333333334,158"
+          Size="237.333333333334,200.666666666667"
+          Id="Package\Post Job on Success\Process each error message"
+          TopLeft="58.0925899641934,629.51850833341" />
+        <NodeLayout
+          Size="172,42.6666666666667"
+          Id="Package\Post Job on Success\Process each run result\Concatenate results"
+          TopLeft="55.3518485887735,19.0370287029832" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="284,120"
+          Size="284,162.666666666667"
+          Id="Package\Post Job on Success\Process each run result"
+          TopLeft="25.22222008363,341.666657376952" />
+        <NodeLayout
+          Size="154.666666666667,42.6666666666667"
+          Id="Package\Post Job on Success\Update Job Run"
+          TopLeft="75.7777734454033,171.03702818641" />
+        <EdgeLayout
+          Id="Package\Post Job on Success.PrecedenceConstraints[Constraint]"
+          TopLeft="144.513886489871,64.3888895733492">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.5370279754752"
+              Start="0,0"
+              End="0,29.0370279754752">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.0370279754752" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Post Job on Success.PrecedenceConstraints[Constraint 1]"
+          TopLeft="142.055550871348,143.592584215491">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="11.0555559073885,27.4444439709189"
+              Start="0,0"
+              End="11.0555559073885,19.9444439709189">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.72222198545943" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.72222198545943"
+                    Point2="0,13.7222219854594"
+                    Point3="4,13.7222219854594" />
+                  <mssgle:LineSegment
+                    End="7.05555590738845,13.7222219854594" />
+                  <mssgle:CubicBezierSegment
+                    Point1="7.05555590738845,13.7222219854594"
+                    Point2="11.0555559073885,13.7222219854594"
+                    Point3="11.0555559073885,17.7222219854594" />
+                  <mssgle:LineSegment
+                    End="11.0555559073885,19.9444439709189" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Post Job on Success.PrecedenceConstraints[Constraint 2]"
+          TopLeft="153.111106778737,213.703694853077">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="8.00000024835293,38.0370368390173"
+              Start="0,0"
+              End="8.00000024835293,30.5370368390173">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.0185184195086" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.0185184195086"
+                    Point2="0,19.0185184195086"
+                    Point3="4,19.0185184195086" />
+                  <mssgle:LineSegment
+                    End="4.00000024835293,19.0185184195086" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4.00000024835293,19.0185184195086"
+                    Point2="8.00000024835293,19.0185184195086"
+                    Point3="8.00000024835293,23.0185184195086" />
+                  <mssgle:LineSegment
+                    End="8.00000024835293,30.5370368390173" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-3.99999987582353,24.0185184195086,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Post Job on Success.PrecedenceConstraints[Constraint 3]"
+          TopLeft="164.16666355536,294.40739835876">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47.2592590181918"
+              Start="0,0"
+              End="0,39.7592590181918">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.7592590181918" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Post Job on Success.PrecedenceConstraints[Constraint 4]"
+          TopLeft="166.902775261482,504.333324043619">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.8333328210641"
+              Start="0,0"
+              End="0,30.3333328210641">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.3333328210641" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Post Job on Success.PrecedenceConstraints[Constraint 5]"
+          TopLeft="166.583330439335,584.83332353135">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="10.1759261915252,44.68518480206"
+              Start="0,0"
+              End="10.1759261915252,37.18518480206">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.34259240103" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.34259240103"
+                    Point2="0,22.34259240103"
+                    Point3="4,22.34259240103" />
+                  <mssgle:LineSegment
+                    End="6.17592619152515,22.34259240103" />
+                  <mssgle:CubicBezierSegment
+                    Point1="6.17592619152515,22.34259240103"
+                    Point2="10.1759261915252,22.34259240103"
+                    Point3="10.1759261915252,26.34259240103" />
+                  <mssgle:LineSegment
+                    End="10.1759261915252,37.18518480206" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Post Job on Success.PrecedenceConstraints[Constraint 6]"
+          TopLeft="178.092589715841,830.185175000076">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52.0370381476699"
+              Start="0,0"
+              End="0,44.5370381476699">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5370381476699" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Post Job on Success.PrecedenceConstraints[Constraint 7]"
+          TopLeft="178.212959751625,924.888879814413">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28.8518517915851"
+              Start="0,0"
+              End="0,21.3518517915851">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.3518517915851" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Post Job on Success.PrecedenceConstraints[Constraint 8]"
+          TopLeft="176.796293005623,996.407398272665">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45.9629588217649"
+              Start="0,0"
+              End="0,38.4629588217649">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.4629588217649" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="360.666666666667,1140.66666666667"
+          Size="360.666666666667,1183.33333333334"
+          Id="Package\Post Job on Success"
+          TopLeft="328.981476579276,870.17776648548" />
         <NodeLayout
           Size="169.333333333334,42.6666666666667"
           Id="Package\Pre Job\Getting Job Run ID"
@@ -1559,16 +2083,9 @@
           Id="Package\Pre Job"
           TopLeft="634.999991431832,45.2666669301192" />
         <NodeLayout
-          Size="133.333333333334,42.6666666666667"
-          Id="Package\Main Job\Child_DWH"
-          TopLeft="72.874993837749,31.333324499925" />
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="282.666666666667,128.666666666667"
-          Size="282.666666666667,172"
-          Id="Package\Main Job"
-          TopLeft="632.083323914558,421.849992456734" />
+          Size="138,42.6666666666667"
+          Id="Package\Set Message"
+          TopLeft="409.166660569608,751.333321400483" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="775.041657673195,374.600000263452">
@@ -1591,10 +2108,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="200.666666666667,42.6666666666667"
-          Id="Package\Getting Count of Fail Jobs"
-          TopLeft="674.999989941717,662.999988144636" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="774.37499026147,593.849992456734">
@@ -1619,10 +2132,6 @@
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="170.666666666667,42.6666666666667"
-          Id="Package\Output Job_Control"
-          TopLeft="956.666652411223,745.333320005735" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
           TopLeft="775.33332327505,705.666654811303">
@@ -1659,10 +2168,6 @@
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="138,42.6666666666667"
-          Id="Package\Set Message"
-          TopLeft="409.166660569608,751.333321400483" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
           TopLeft="743.222212163939,705.666654811303">
@@ -1699,240 +2204,92 @@
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="158.666666666667,42.6666666666667"
-          Id="Package\Post Job on Success\Getting End date"
-          TopLeft="67.6388887750606,21.7222229066825" />
-        <NodeLayout
-          Size="140,42.6666666666667"
-          Id="Package\Post Job on Success\Get Duration"
-          TopLeft="72.0555508713481,100.925917548824" />
-        <EdgeLayout
-          Id="Package\Post Job on Success.PrecedenceConstraints[Constraint]"
-          TopLeft="144.513886489871,64.3888895733492">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,36.5370279754752"
-              Start="0,0"
-              End="0,29.0370279754752">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,29.0370279754752" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="154.666666666667,42.6666666666667"
-          Id="Package\Post Job on Success\Update Job Run"
-          TopLeft="70.222217972632,171.518509659282" />
-        <EdgeLayout
-          Id="Package\Post Job on Success.PrecedenceConstraints[Constraint 1]"
-          TopLeft="144.805551088657,143.592584215491">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,27.9259254437909"
-              Start="0,0"
-              End="0,20.4259254437909">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.4259254437909" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="204,42.6666666666667"
-          Id="Package\Post Job on Success\Get run results for this job"
-          TopLeft="47.0740701694183,247.888879909118" />
-        <EdgeLayout
-          Id="Package\Post Job on Success.PrecedenceConstraints[Constraint 2]"
-          TopLeft="148.314810737692,214.185176325949">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,33.7037035831698"
-              Start="0,0"
-              End="0,26.2037035831698">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26.2037035831698" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-8,5.10185179158489,16,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="172,42.6666666666667"
-          Id="Package\Post Job on Success\Process each run result\Concatenate results"
-          TopLeft="55.3518485887735,19.0370287029832" />
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="284,119.333333333334"
-          Size="284,162.666666666667"
-          Id="Package\Post Job on Success\Process each run result"
-          TopLeft="27.0740719078869,342.148138849824" />
-        <EdgeLayout
-          Id="Package\Post Job on Success.PrecedenceConstraints[Constraint 3]"
-          TopLeft="149.074070169418,290.555546575785">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="20.0000017384687,51.592592274039"
-              Start="0,0"
-              End="20.0000017384687,44.092592274039">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,21.7962961370195" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,21.7962961370195"
-                    Point2="0,25.7962961370195"
-                    Point3="4,25.7962961370195" />
-                  <mssgle:LineSegment
-                    End="16.0000017384687,25.7962961370195" />
-                  <mssgle:CubicBezierSegment
-                    Point1="16.0000017384687,25.7962961370195"
-                    Point2="20.0000017384687,25.7962961370195"
-                    Point3="20.0000017384687,29.7962961370195" />
-                  <mssgle:LineSegment
-                    End="20.0000017384687,44.092592274039" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="181.333333333334,42.6666666666667"
-          Id="Package\Post Job on Success\Get errors for this job"
-          TopLeft="86.3333302841144,539.99999023676" />
-        <EdgeLayout
-          Id="Package\Post Job on Success.PrecedenceConstraints[Constraint 4]"
-          TopLeft="173.037034429334,504.814805516491">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,35.1851847202689"
-              Start="0,0"
-              End="0,27.6851847202689">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,27.6851847202689" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="169.333333333334,42.6666666666667"
-          Id="Package\Post Job on Success\Process each error message\Concatenate errors"
-          TopLeft="31.2962967240148,28.2222227904531" />
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="237.333333333334,157.333333333334"
-          Size="237.333333333334,200.666666666667"
-          Id="Package\Post Job on Success\Process each error message"
-          TopLeft="58.0925899641934,629.51850833341" />
-        <EdgeLayout
-          Id="Package\Post Job on Success.PrecedenceConstraints[Constraint 5]"
-          TopLeft="176.879626790821,582.666656903426">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,46.8518514299834"
-              Start="0,0"
-              End="0,39.3518514299834">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,39.3518514299834" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="360.666666666667,898"
-          Size="360.666666666667,941.333333333334"
-          Id="Package\Post Job on Success"
-          TopLeft="328.981476579276,870.177766485479" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
           TopLeft="478.166660569608,793.99998806715">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="31.148149343001,76.1777784183295"
+              EndConnector="31.148149343001,76.1777784183296"
               Start="0,0"
-              End="31.148149343001,68.6777784183295">
+              End="31.148149343001,68.6777784183296">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,34.0888892091647" />
+                    End="0,34.0888892091648" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,34.0888892091647"
-                    Point2="0,38.0888892091647"
-                    Point3="4,38.0888892091647" />
+                    Point1="0,34.0888892091648"
+                    Point2="0,38.0888892091648"
+                    Point3="4,38.0888892091648" />
                   <mssgle:LineSegment
-                    End="27.148149343001,38.0888892091647" />
+                    End="27.148149343001,38.0888892091648" />
                   <mssgle:CubicBezierSegment
-                    Point1="27.148149343001,38.0888892091647"
-                    Point2="31.148149343001,38.0888892091647"
-                    Point3="31.148149343001,42.0888892091647" />
+                    Point1="27.148149343001,38.0888892091648"
+                    Point2="31.148149343001,38.0888892091648"
+                    Point3="31.148149343001,42.0888892091648" />
                   <mssgle:LineSegment
-                    End="31.148149343001,68.6777784183295" />
+                    End="31.148149343001,68.6777784183296" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-9.73037845349949,43.0888892091647,50.60890625,11.609375"
+              BoundingBox="-9.73037845349949,43.0888892091648,50.60890625,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="242.666666666667,42.6666666666667"
+          Id="Package.EventHandlers[OnError]\For Loop Send One Email Only\Create Incident-Send Failure Email"
+          TopLeft="24.6666666666667,113.296292155098" />
+        <NodeLayout
+          Size="220,42.6666666666667"
+          Id="Package.EventHandlers[OnError]\For Loop Send One Email Only\Send Failure Email to Support"
+          TopLeft="35.0740740602766,19.9999999999999" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError]\For Loop Send One Email Only.PrecedenceConstraints[Constraint]"
+          TopLeft="145.537037030138,62.6666666666666">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50.6296254884315"
+              Start="0,0"
+              End="0,43.1296254884315">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.1296254884315" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-25.304453125,15.7601252442158,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="290.666666666667,246.333333333334"
+          Size="290.666666666667,289.333333333334"
+          Id="Package.EventHandlers[OnError]\For Loop Send One Email Only"
+          TopLeft="227.333333333333,48.6666666666667" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
   <TaskHost
     design-time-name="Package\Output Job_Control">
     <LayoutInfo>

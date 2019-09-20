@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Load_Dimension_tbls"
   DTS:PackageType="5"
-  DTS:VersionBuild="40"
-  DTS:VersionGUID="{C16167C2-3F0F-42CB-88BA-8F816CAD0345}">
+  DTS:VersionBuild="43"
+  DTS:VersionGUID="{30CE3747-E233-400C-99F5-EEBC514B26B1}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -21,9 +21,11 @@
       DTS:CreationName="OLEDB"
       DTS:DTSID="{CF94D6C2-0FB0-4BFD-B920-4E2B76F43707}"
       DTS:ObjectName="SQL Connection">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::SQL_ConnectionString]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=LVAGPLTP3455;Initial Catalog=SSISDB;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=LVAGPLTP3455;Initial Catalog=SSISDB;Provider=SQLNCLI11.1;Integrated Security=SSPI;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -35,7 +37,7 @@
       DTS:ObjectName="vJob_Run_Id">
       <DTS:Property
         DTS:DataType="3"
-        DTS:Name="ParameterValue">0</DTS:Property>
+        DTS:Name="ParameterValue">1</DTS:Property>
     </DTS:PackageParameter>
   </DTS:PackageParameters>
   <DTS:Variables>
@@ -57,7 +59,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="vDateString">
       <DTS:VariableValue
-        DTS:DataType="8">20190918</DTS:VariableValue>
+        DTS:DataType="8">20190919</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -174,7 +176,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="v_Job_Control_Id">
       <DTS:VariableValue
-        DTS:DataType="3">0</DTS:VariableValue>
+        DTS:DataType="3">1</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>

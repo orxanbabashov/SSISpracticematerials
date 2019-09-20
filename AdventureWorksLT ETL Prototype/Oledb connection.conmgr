@@ -3,6 +3,8 @@
   DTS:ObjectName="Oledb connection"
   DTS:DTSID="{CCF281D1-59AE-49AB-B69D-0820645FE0CD}"
   DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="ConnectionString">@[$Project::DWH_ConnectionString]</DTS:PropertyExpression>
   <DTS:ObjectData>
     <DTS:ConnectionManager
       DTS:ConnectionString="Data Source=LVAGPLTP3455;Initial Catalog=DWAdventureWorksLT2012v1;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
